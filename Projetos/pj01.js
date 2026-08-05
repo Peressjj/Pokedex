@@ -1,31 +1,52 @@
-const urlApi = "https://pokeapi.co/api/v2/pokemon/"
-
-let namePokemon = null
-let data = null
-let pokemonImg = document.getElementById("pokemon")
-let teste = document.getElementById("teste")
-let text = document.getElementById("texto");
-let input = document.getElementById("bo");
-let boton = document.getElementById("boton");
-
-async function concApi() {
-    const urlCompletApi = "https://pokeapi.co/api/v2/pokemon/" + namePokemon
-
-    const response = await fetch(urlCompletApi)
-    data = await response.json()
-    console.log(data)
-    Img(data)
+const CONFIG = {
+    URL_API: "https://pokeapi.co/api/v2/pokemon/"
 }
 
-boton.addEventListener("click", function () {
-    text.innerText = input.value;
-    namePokemon = input.value;
-    input.value = null;
-    console.log(input.value)
-    concApi()
-});
+const DOM = {
+    imgPokemon: document.getElementById("imgPokemon"),
+    teste: document.getElementById("teste"),
+    text: document.getElementById("texto"),
+    input: document.getElementById("input"),
+    boton: document.getElementById("boton"),
+}
 
-function Img(){
-    pokemonImg.src = data.sprites.front_default
-    teste.innerText = pokemonImg.src
+boton.addEventListener("click", async function (){
+    let nomePokemon = DOM.input.value
+    await main(nomePokemon)
+})
+
+function concNameApi(nomePokemon) {
+    let urlCompletApi = CONFIG.URL_API + nomePokemon
+    return urlCompletApi
+}
+
+async function sharePokemon(urlCompletApi) {
+    const response = await fetch(urlCompletApi)
+    let datePokemon = await response.json()
+    return datePokemon
+}
+
+function dateDados(datePokemon) {
+    let a = datePokemon.sprites.front_default
+    let b = datePokemon.id
+    const POKEMON = {
+        image: a,
+        id:  b
+    }
+    return POKEMON
+}
+
+function upDateUi(POKEMON) {
+    DOM.imgPokemon.src = POKEMON.image
+    //DOM (futuro id)
+}
+async function main(nomePokemon){
+
+    let urlCompletApi = concNameApi(nomePokemon)
+
+    let datePokemon = await sharePokemon(urlCompletApi)
+
+    let POKEMON = dateDados(datePokemon)
+
+    upDateUi(POKEMON)
 }
