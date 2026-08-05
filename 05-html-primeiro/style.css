@@ -1,0 +1,19 @@
+.logo {
+    width: 100px;
+}
+
+.formulario {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+nav a {
+    margin-right: 10px;
+    text-decoration: none;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
