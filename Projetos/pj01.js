@@ -22,13 +22,13 @@ function concNameApi(nomePokemon) {
 
 async function sharePokemon(urlCompletApi) {
     const response = await fetch(urlCompletApi)
-    let datePokemon = await response.json()
-    return datePokemon
+    let dataPokemon = await response.json()
+    return dataPokemon
 }
 
-function dateDados(datePokemon) {
-    let a = datePokemon.sprites.front_default
-    let b = datePokemon.id
+function dateDados(dataPokemon) {
+    let a = dataPokemon.sprites.front_default
+    let b = dataPokemon.id
     const POKEMON = {
         image: a,
         id:  b
@@ -44,9 +44,9 @@ async function main(nomePokemon){
 
     let urlCompletApi = concNameApi(nomePokemon)
 
-    let datePokemon = await sharePokemon(urlCompletApi)
+    let dataPokemon = await sharePokemon(urlCompletApi)
 
-    let POKEMON = dateDados(datePokemon)
+    let POKEMON = dateDados(dataPokemon)
 
     upDateUi(POKEMON)
 }
