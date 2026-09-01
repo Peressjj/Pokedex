@@ -1,0 +1,381 @@
+html body {
+   height: 100%;
+   margin: 3px;
+   font-family: cursive;
+}
+
+:root {
+   --light-bg: url(Backgrounds/Background_Pokedex_Paisagem.jpg);
+   --dark-bg: url(Backgrounds/Background_Pokedex_roxo.png);
+}
+
+body {
+   background-image: url(Backgrounds/Background_Pokedex_Paisagem.jpg);
+   background-image: url(./Backgrounds/Background_Pokedex_Minimalista.png);
+   background-image: url(./Backgrounds/Background_Pokedex_roxo.png);
+   background-repeat: repeat-y;
+   background-position: center;
+   background-attachment: fixed;
+   display: flex;
+   background-size: cover;
+   flex-direction: column;
+   min-height: 100vh;
+   /* propriedades que já existem continuam */
+   padding-top: 140px;    /* altura do header + navbar juntos, ajuste no olho */
+   padding-bottom: 80px;  /* altura do footer, ajuste no olho */
+}
+
+
+/* HEADER */
+#header {
+   background: rgba(255, 255, 255, 0.1);
+   backdrop-filter: blur(10px);
+   -webkit-backdrop-filter: blur(10px);
+   display: flex;
+   align-items: center;
+   position: relative;
+   border: solid green 5px;
+   border-radius: 20px;
+   transition: 0.3s;
+   padding: 15px;
+   height: 30px;
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 96.5%;
+   z-index: 100;
+}
+
+.title_pokedex {
+   position: absolute;
+   left: 50%;
+   transform: translateX(-50%);
+   border: solid green 3px;
+   height: 40px;
+   font-size: 35px;
+   font-family: cursive;
+   display: inline-block;  
+}
+
+.more_options_button {
+   color: black;
+   border: solid green 3px;
+   border-radius: 50px;
+   font-size: 50px;
+   cursor: pointer;
+   background: rgba(255, 255, 255, 0.1);
+   backdrop-filter: blur(10px);
+   -webkit-backdrop-filter: blur(10px);
+   cursor: pointer;
+   transition: 0.3s;
+   color: #ffffff;
+   filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.4));
+}
+
+.mail_box_button {
+   border: solid green 3px;
+   border-radius: 50px;
+   font-size: 40px;
+   margin-left: auto;
+   background: rgba(255, 255, 255, 0.1);
+   backdrop-filter: blur(10px);
+   -webkit-backdrop-filter: blur(10px);
+   cursor: pointer;
+   transition: 0.3s;
+}
+
+.profile_button {
+   border: solid green 3px;
+   border-radius: 50px;
+   font-size: 40px;
+   background: rgba(255, 255, 255, 0.1);
+   backdrop-filter: blur(10px);
+   -webkit-backdrop-filter: blur(10px);
+   cursor: pointer;
+   transition: 0.3s;
+}
+
+.more_options_button:hover,
+.mail_box_button:hover,
+.profile_button:hover {
+   transform: scale(1.05);
+}
+
+
+/* NAVBAR */
+#navbar { /*blue*/
+   border: solid blue 5px;
+   border-radius: 100px;
+   display: flex;
+   justify-content: space-around;
+   transition: 0.5s;
+   position: fixed;
+   top: 70px;   /* ajuste conforme a altura real do seu #header (70px + padding/border) */
+   left: 0;
+   width: 99%;
+   z-index: 99;
+}
+
+.about_button,
+.home_button,
+.favorites_button {
+   border: solid blue 3px;
+   border-radius: 100px;
+   font-size: 22px;
+   font-family: cursive;
+   background: rgba(255, 255, 255, 0.1);
+   backdrop-filter: blur(10px);
+   -webkit-backdrop-filter: blur(10px);
+   cursor: pointer;
+   transition: 0.3s;
+}
+
+.favorites_button:hover,
+.about_button:hover,
+.home_button:hover {
+   transform: scale(1.05);
+}
+
+/* MAIN */
+#main {
+   border: solid yellow 5px;
+   border-radius: 20px;
+   display: flex;
+   flex-direction: column;
+   justify-content: flex-start;
+   align-items: center;
+   flex: 1;
+   gap: 20px;
+   padding: 20px;
+   transition: 0.5s;
+}
+
+.searchbar {
+   display: flex;
+   border: solid yellow 3px;
+   font-size: 18px;
+   color: black;
+   background-color: white;
+   border-radius: 30px;
+   padding: 2px 5px;
+   width: 50%;
+   justify-content: space-between;
+   cursor: text;
+   position: sticky;
+   top: 120px;
+   margin: 0 auto; 
+   z-index: 10;
+   transition: 0.3s;
+}
+
+.searchbar:hover {
+   transform: scale(1.02);
+}
+
+.search_title {
+   border: solid yellow 3px;
+   border-radius: 30px;
+   background: none;
+   font-size: 22px;
+   color: rgba(0, 0, 0, 0.4);
+   display: inline-block;
+   margin: 0;
+}
+
+.search_icon {
+   border: solid yellow 3px;
+   border-radius: 30px;
+   font-size: 22px;
+   display: inline-block;
+   margin: 0;
+}
+
+/* SECTION */
+#section {
+   border: solid purple 5px;
+   border-radius: 30px;
+   display: grid;
+   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));   
+   gap: 15px;
+   padding: 15px;
+   flex: 1;
+   width: 100%;
+}
+
+.card_1,
+.card_2, 
+.card_3, 
+.card_4,
+.card_5, 
+.card_6, 
+.card_7, 
+.card_8,
+.card_9, 
+.card_10 {
+   border: solid red 3px;
+   border-radius: 30px;
+   display: flex;
+   width: 150px;
+   height: 200px;
+   cursor: pointer;
+   transition: 0.3s;
+   background: rgba(255, 255, 255, 0.1);
+   backdrop-filter: blur(10px);
+   -webkit-backdrop-filter: blur(10px);
+   background-position: center;
+   background-size: 150px;
+   background-repeat: no-repeat;
+}
+
+.card_1 {
+   background-image: url(Pokemons/Pokemon_bulbasauro.png);
+}
+.card_2 {
+   background-image: url(Pokemons/Pokemon_charmander.png);
+}
+.card_3 {
+   background-image: url(Pokemons/Pokemon_squirtle.png);
+}
+.card_4 {
+   background-image: url(Pokemons/Pokemon_pikachu.png);
+}
+.card_5 {
+   background-image: url(Pokemons/Pokemon_Jygglipuf.png);
+}
+.card_6 {
+   background-image: url(Pokemons/Pokemon_meonth.png);
+}
+.card_7 {
+   background-image: url(Pokemons/Pokemon_psyduck.png);
+}
+.card_8 {
+   background-image: url(Pokemons/Pokemon_gengar.png);
+}
+.card_9 {
+   background-image: url(Pokemons/Pokemon_magikarp.png);
+}
+.card_10 {
+   background-image: url(Pokemons/Pokemon_snorlax.png);
+}
+
+.card_1:hover,
+.card_2:hover,
+.card_3:hover,
+.card_4:hover,
+.card_5:hover,
+.card_6:hover,
+.card_7:hover,
+.card_8:hover,
+.card_9:hover,
+.card_10:hover {
+   scale: 1.4;
+}
+
+.card_1_header,
+.card_2_header,
+.card_3_header,
+.card_4_header,
+.card_5_header,
+.card_6_header,
+.card_7_header,
+.card_8_header,
+.card_9_header,
+.card_10_header {
+   border: solid white 3px;
+   background-color: white;
+   display: flex;                    
+   align-items: center;              
+   justify-content: space-around;
+   border-radius: 27px 27px 0 0;
+   width: 100%;                     
+   box-sizing: border-box;
+   border-radius: 50px;
+   height: 40px;
+   font-size: 10px;
+   font-family: cursive;
+}
+
+.Bulbasaur,
+.Charmander,
+.Squirtle,
+.Pikachu,
+.Jigglypuff,
+.Meowth,
+.Psyduck,
+.Gengar,
+.Magikarp,
+.Snorlax {
+   border: solid red 1px;
+   border-radius: 20px;
+   font-size: 12px;
+   display: inline;
+}
+
+.hearth_button1,
+.hearth_button2,
+.hearth_button3,
+.hearth_button4,
+.hearth_button5,
+.hearth_button6,
+.hearth_button7,
+.hearth_button8,
+.hearth_button9,
+.hearth_button10 {
+   border: solid red 1px;
+   border-radius: 50px;
+   font-size: 20px;
+   background: none;
+   transition: 0.3s;
+}
+
+.hearth_button1:hover,
+.hearth_button2:hover,
+.hearth_button3:hover,
+.hearth_button4:hover,
+.hearth_button5:hover,
+.hearth_button6:hover,
+.hearth_button7:hover,
+.hearth_button8:hover,
+.hearth_button9:hover,
+.hearth_button10:hover {
+   scale: 1.3;
+}
+
+
+/* FOOTER */
+#footer {
+   background: rgba(255, 255, 255, 0.1);
+   backdrop-filter: blur(10px);
+   -webkit-backdrop-filter: blur(10px);
+   border: solid orange 5px;
+   border-radius: 20px;
+   transition: 0.5s;
+   display: flex;
+   justify-content: space-around;
+   position: fixed;
+   bottom: 0;
+   left: 0;
+   width: 99%;
+   z-index: 100;
+   /* resto das propriedades continua igual */
+}
+
+.github_button,
+.zap_button,
+.instagram_button,
+.trello_button {
+   border: solid orange 3px;
+   border-radius: 100px;
+   font-size: 30px;
+   background: rgba(255, 255, 255, 0.1);
+   backdrop-filter: blur(10px);
+   -webkit-backdrop-filter: blur(10px);
+   cursor: pointer;
+}  
+
+.github_button:hover,
+.zap_button:hover,
+.instagram_button:hover,
+.trello_button:hover {
+   transform: scale(1.05);
+}
