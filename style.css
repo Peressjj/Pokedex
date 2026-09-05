@@ -10,9 +10,7 @@ html body {
 }
 
 body {
-   background-image: url(Backgrounds/Background_Pokedex_Paisagem.jpg);
-   background-image: url(./Backgrounds/Background_Pokedex_Minimalista.png);
-   background-image: url(./Backgrounds/Background_Pokedex_roxo.png);
+   background-image: url(./assets/Backgrounds/Background_Pokedex_roxo.png);
    background-repeat: repeat-y;
    background-position: center;
    background-attachment: fixed;
@@ -228,34 +226,34 @@ body {
 }
 
 .card_1 {
-   background-image: url(Pokemons/Pokemon_bulbasauro.png);
+   background-image: url(assets/Pokemons/Pokemon_bulbasauro.png);
 }
 .card_2 {
-   background-image: url(Pokemons/Pokemon_charmander.png);
+   background-image: url(assets/Pokemons/Pokemon_charmander.png);
 }
 .card_3 {
-   background-image: url(Pokemons/Pokemon_squirtle.png);
+   background-image: url(assets/Pokemons/Pokemon_squirtle.png);
 }
 .card_4 {
-   background-image: url(Pokemons/Pokemon_pikachu.png);
+   background-image: url(assets/Pokemons/Pokemon_pikachu.png);
 }
 .card_5 {
-   background-image: url(Pokemons/Pokemon_Jygglipuf.png);
+   background-image: url(assets/Pokemons/Pokemon_Jygglipuf.png);
 }
 .card_6 {
-   background-image: url(Pokemons/Pokemon_meonth.png);
+   background-image: url(assets/Pokemons/Pokemon_meonth.png);
 }
 .card_7 {
-   background-image: url(Pokemons/Pokemon_psyduck.png);
+   background-image: url(assets/Pokemons/Pokemon_psyduck.png);
 }
 .card_8 {
-   background-image: url(Pokemons/Pokemon_gengar.png);
+   background-image: url(assets/Pokemons/Pokemon_gengar.png);
 }
 .card_9 {
-   background-image: url(Pokemons/Pokemon_magikarp.png);
+   background-image: url(assets/Pokemons/Pokemon_magikarp.png);
 }
 .card_10 {
-   background-image: url(Pokemons/Pokemon_snorlax.png);
+   background-image: url(assets/Pokemons/Pokemon_snorlax.png);
 }
 
 .card_1:hover,
