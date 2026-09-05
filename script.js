@@ -44,3 +44,7 @@ fetch("pokemons.json")
       })
    })
    .catch((erro) => console.error("Erro ao carregar pokemons:", erro))
+
+function botao() {
+   alert("botao");
+}
