@@ -200,19 +200,11 @@ body {
    width: 100%;
 }
 
-.card_1,
-.card_2, 
-.card_3, 
-.card_4,
-.card_5, 
-.card_6, 
-.card_7, 
-.card_8,
-.card_9, 
-.card_10 {
+.card {
    border: solid red 3px;
    border-radius: 30px;
    display: flex;
+   flex-direction: column;
    width: 150px;
    height: 200px;
    cursor: pointer;
@@ -220,53 +212,17 @@ body {
    background: rgba(255, 255, 255, 0.1);
    backdrop-filter: blur(10px);
    -webkit-backdrop-filter: blur(10px);
-   background-position: center;
-   background-size: 150px;
-   background-repeat: no-repeat;
 }
 
-.card_1 {
-   background-image: url(assets/Pokemons/Pokemon_bulbasauro.png);
-}
-.card_2 {
-   background-image: url(assets/Pokemons/Pokemon_charmander.png);
-}
-.card_3 {
-   background-image: url(assets/Pokemons/Pokemon_squirtle.png);
-}
-.card_4 {
-   background-image: url(assets/Pokemons/Pokemon_pikachu.png);
-}
-.card_5 {
-   background-image: url(assets/Pokemons/Pokemon_Jygglipuf.png);
-}
-.card_6 {
-   background-image: url(assets/Pokemons/Pokemon_meonth.png);
-}
-.card_7 {
-   background-image: url(assets/Pokemons/Pokemon_psyduck.png);
-}
-.card_8 {
-   background-image: url(assets/Pokemons/Pokemon_gengar.png);
-}
-.card_9 {
-   background-image: url(assets/Pokemons/Pokemon_magikarp.png);
-}
-.card_10 {
-   background-image: url(assets/Pokemons/Pokemon_snorlax.png);
-}
-
-.card_1:hover,
-.card_2:hover,
-.card_3:hover,
-.card_4:hover,
-.card_5:hover,
-.card_6:hover,
-.card_7:hover,
-.card_8:hover,
-.card_9:hover,
-.card_10:hover {
+.card:hover {
    scale: 1.4;
+}
+
+.card img {
+   width: 100px;
+   height: 100px;
+   margin: 0 auto;
+   object-fit: contain;
 }
 
 .card_1_header,
