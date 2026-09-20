@@ -1,8 +1,0 @@
-30.07.26
-
-teste Pokedex
-
-#1 Commit:
-Author: Joao Peres <joaovitorperes06@gmail.com>
-Date:   Tue Sep 1 03:05:58 2026 -0300
-Pokedex - Version1.0: Estrutura HTML
