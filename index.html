@@ -61,15 +61,23 @@
 
       <!--SECTION-->
       <section id="section">
+         <!--Cartas-->
          <article class="card">
             <header class="card_header">
-               <h1 class="card_title">
-                  Bulbasaur
-               </h1>
-               <button class="hearth_button">
-                  ❤️
+               <p class="card_id">ID: TESTE</p>
+               <button class="sword_button" aria-label="Comparar pokémon">
+                  ⚔️
+               </button>
+               <button class="hearth_button" aria-label="Favoritar pokémon">
+                  <ion-icon name="heart-outline"></ion-icon>   
                </button>
             </header>
+            <main class="card_main">
+               <img src="./assets/Pokemons/Pokemon_charmander.png" alt="charmander" class="card_img">
+            </main>
+            <footer class="card_footer">
+               <p class="card_title">Name: TESTE</p>
+            </footer>
          </article>
       </section>
 
@@ -96,8 +104,8 @@
    <script nomodule src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"></script>
    
    <!--LINK JAVA SCRIPT-->
-   <script type="module" src="script.js"></script>
    <script src="pokemons.js"></script>
+   <script type="module" src="script.js"></script>
 </body>
  
 </html>

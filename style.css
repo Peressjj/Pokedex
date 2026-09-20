@@ -218,24 +218,8 @@ body {
    scale: 1.4;
 }
 
-.card img {
-   width: 100px;
-   height: 100px;
-   margin: 0 auto;
-   object-fit: contain;
-}
-
-.card_1_header,
-.card_2_header,
-.card_3_header,
-.card_4_header,
-.card_5_header,
-.card_6_header,
-.card_7_header,
-.card_8_header,
-.card_9_header,
-.card_10_header {
-   border: solid white 3px;
+.card_header {
+   border: solid red 3px;
    background-color: white;
    display: flex;                    
    align-items: center;              
@@ -249,50 +233,65 @@ body {
    font-family: cursive;
 }
 
-.Bulbasaur,
-.Charmander,
-.Squirtle,
-.Pikachu,
-.Jigglypuff,
-.Meowth,
-.Psyduck,
-.Gengar,
-.Magikarp,
-.Snorlax {
+.card_id {
    border: solid red 1px;
-   border-radius: 20px;
-   font-size: 12px;
-   display: inline;
+   font-size: 10px;
 }
 
-.hearth_button1,
-.hearth_button2,
-.hearth_button3,
-.hearth_button4,
-.hearth_button5,
-.hearth_button6,
-.hearth_button7,
-.hearth_button8,
-.hearth_button9,
-.hearth_button10 {
+.sword_button {
    border: solid red 1px;
    border-radius: 50px;
-   font-size: 20px;
+   font-size: 15px;
    background: none;
    transition: 0.3s;
 }
 
-.hearth_button1:hover,
-.hearth_button2:hover,
-.hearth_button3:hover,
-.hearth_button4:hover,
-.hearth_button5:hover,
-.hearth_button6:hover,
-.hearth_button7:hover,
-.hearth_button8:hover,
-.hearth_button9:hover,
-.hearth_button10:hover {
+.sword_button:hover {
    scale: 1.3;
+}
+
+.hearth_button {
+   border: solid red 1px;
+   border-radius: 50px;
+   font-size: 15px;
+   background: none;
+   transition: 0.3s;
+}
+
+.hearth_button:hover {
+   scale: 1.3;
+}
+
+.card_main {
+   border: solid purple 3px;
+   flex: 1;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.card_img {
+   width: 100px;
+   height: 100px;
+   object-fit: contain;
+   border: solid white 4px;
+   border-radius: 100px;
+   background-position: center;
+   background-repeat: no-repeat;
+}
+
+.card_footer {
+   border: solid red 3px;
+   border-radius: 50px;
+   background-color: white;
+   display: flex;
+}
+
+.card_title {
+   border: solid red 2px;
+   border-radius: 50px;
+   font-size: 10px;
+   margin: 10px;
 }
 
 
