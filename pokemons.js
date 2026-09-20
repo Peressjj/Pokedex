@@ -126,7 +126,7 @@ pokedex.forEach((element) => {
          </button>
       </header>
       <main class="card_main">
-         <img src="./assets/Pokemons/${element.name}.png" alt="${element.name}" class="card_img">
+         <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/${element.id}.png" alt="${element.name}" class="card_img">
       </main>
       <footer class="card_footer">
          <p class="card_title">Name: ${element.name}</p>
