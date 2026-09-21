@@ -215,7 +215,7 @@ body {
 }
 
 .card:hover {
-   scale: 1.2;
+   scale: 1.1;
 }
 
 .card_header {
@@ -271,11 +271,9 @@ body {
 }
 
 .card_img {
-   width: 100px;
-   height: 100px;
+   width: 120px;
+   height: 120px;
    object-fit: contain;
-   border: solid white 4px;
-   border-radius: 100px;
    background-position: center;
    background-repeat: no-repeat;
 }
