@@ -1,137 +1,291 @@
-const pokemon = {
-   id: 0, // Identificador unico
-   name: "", // Nome
-   base_experience: 0, // Base de experiencia
-   height: 0, // altura em decímetros
-   weight: 0, // peso em hectogramas
-   is_default: true, // Forma padrao (true/false)
-   order: 0,
-
-   // TIPOS
-   types: [
-      // tipos elementais
+const pokemons=[
+  {
+    id: 1,
+    name: "bulbasaur",
+    height: 7,
+    weight: 69,
+    abilities: [
       {
-         slot: 1, // tipo 1
-         type: {
-            name: "",
-            url: "",
-         },
+        slot: 1,
+        ability: {
+          name: "overgrow",
+          url: "https://pokeapi.co/api/v2/ability/65/"
+        }
       },
       {
-         slot: 2, // tipo 2
-         type: {
-            name: "",
-            url: "",
-         },
-      },
-   ],
-
-   abilities: [
-      // habilidades passivas
+        slot: 3,
+        ability: {
+          name: "chlorophyll",
+          url: "https://pokeapi.co/api/v2/ability/34/"
+        }
+      }
+    ],
+    species: {
+      name: "bulbasaur",
+      url: "https://pokeapi.co/api/v2/pokemon-species/1/"
+    },
+    sprites: {
+      other: {
+        'official-artwork': {
+          front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"
+        }
+      }
+    },
+    stats: [
       {
-         is_hidden: false, // habilidade oculta
-         slot: 1, // tipo 1
-         ability: {
-            name: "",
-            url: "",
-         },
+        base_stat: 45,
+        effort: 0,
+        stat: {
+          name: "hp",
+          url: "https://pokeapi.co/api/v2/stat/1/",
+        }
       },
-   ],
-
-   stats: [
-      // status
       {
-         base_stat: 0, // valor numerico do status
-         stat: {
-            name: "", // "hp", "attack", "defense", "special-attack", "special-defense", "speed"
-            url: "",
-         },
+        base_stat: 49,
+        effort: 0,
+        stat: {
+          name: "attack",
+          url: "https://pokeapi.co/api/v2/stat/2/",
+        }
       },
-   ],
+      {
+        base_stat: 49,
+        effort: 0,
+        stat: {
+          name: "defense",
+          url: "https://pokeapi.co/api/v2/stat/3/",
+        }
+      },
+      {
+        base_stat: 65,
+        effort: 1,
+        stat: {
+          name: "special-attack",
+          url: "https://pokeapi.co/api/v2/stat/4/",
+        }
+      },
+      {
+        base_stat: 65,
+        effort: 0,
+        stat: {
+          name: "special-defense",
+          url: "https://pokeapi.co/api/v2/stat/5/",
+        }
+      },
+      {
+        base_stat: 45,
+        effort: 0,
+        stat: {
+          name: "speed",
+          url: "https://pokeapi.co/api/v2/stat/6/",
+        }
+      }
+    ],
+    types: [
+      {
+        slot: 1,
+        type: {
+          name: "grass",
+          url: "https://pokeapi.co/api/v2/type/12/"
+        }
+      },
+      {
+        slot: 2,
+        type: {
+          name: "poison",
+          url: "https://pokeapi.co/api/v2/type/4/"
+        }
+      }
+    ],
 
-   sprites: {
-      // imagens/icones do pokemon
-      front_default: "", // imagem padrao (frente)
-   },
-   species: {
-      // espécies do pokemon
-      name: "",
-      url: "",
-   },
-}
+  },
+  {
+    id: 4,
+    name: "charmander",
+    height: 6,
+    weight: 85,
+    abilities: [
+      {
+        slot: 1,
+        ability: {
+          name: "blaze",
+          url: "https://pokeapi.co/api/v2/ability/66/"
+        }
+      },
+      {
+        slot: 3,
+        ability: {
+          name: "solar-power",
+          url: "https://pokeapi.co/api/v2/ability/94/"
+        }
+      }
+    ],
+    species: {
+      name: "charmander",
+      url: "https://pokeapi.co/api/v2/pokemon-species/4/"
+    },
+    sprites: {
+      other: {
+        'official-artwork': {
+          front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png"
+        }
+      }
+    },
+    stats: [
+      {
+        base_stat: 39,
+        effort: 0,
+        stat: {
+          name: "hp",
+          url: "https://pokeapi.co/api/v2/stat/1/",
+        }
+      },
+      {
+        base_stat: 52,
+        effort: 0,
+        stat: {
+          name: "attack",
+          url: "https://pokeapi.co/api/v2/stat/2/",
+        }
+      },
+      {
+        base_stat: 43,
+        effort: 0,
+        stat: {
+          name: "defense",
+          url: "https://pokeapi.co/api/v2/stat/3/",
+        }
+      },
+      {
+        base_stat: 60,
+        effort: 0,
+        stat: {
+          name: "special-attack",
+          url: "https://pokeapi.co/api/v2/stat/4/",
+        }
+      },
+      {
+        base_stat: 50,
+        effort: 0,
+        stat:{
+          name:"special-defense",
+          url:"https://pokeapi.co/api/v2/stat/5/",
+        }
+      },
+      {
+        base_stat: 65,
+        effort: 1,
+        stat:{
+          name:"speed",
+          url:"https://pokeapi.co/api/v2/stat/6/",
+        }
+      }
+    ],
+    types: [
+      {
+        slot: 1,
+        type: {
+          name: "fire",
+          url: "https://pokeapi.co/api/v2/type/10/"
+        }
+      }
+    ],
 
-function criarPokemon(id, name, baseExp, height, weight, tipos) {
-   return {
-      id,
-      name,
-      base_experience: baseExp,
-      height,
-      weight,
-      is_default: true,
-      order: id,
-      types: tipos.map((nome, index) => ({
-         slot: index + 1,
-         type: { name: nome, url: "" },
-      })),
-      abilities: [],
-      stats: [],
-      sprites: { front_default: "" },
-      species: { name, url: "" },
-   }
-}
-
-const pokedex = [
-   criarPokemon(1, "bulbasaur", 64, 7, 69, ["grass", "poison"]),
-   criarPokemon(4, "charmander", 62, 6, 85, ["fire"]),
-   criarPokemon(7, "squirtle", 63, 5, 90, ["water"]),
-   criarPokemon(25, "pikachu", 112, 4, 60, ["electric"]),
-   criarPokemon(39, "jigglypuff", 95, 5, 55, ["normal", "fairy"]),
-   criarPokemon(52, "meowth", 58, 4, 42, ["normal"]),
-   criarPokemon(54, "psyduck", 64, 8, 196, ["water"]),
-   criarPokemon(94, "gengar", 250, 15, 405, ["ghost", "poison"]),
-   criarPokemon(129, "magikarp", 40, 9, 100, ["water"]),
-   criarPokemon(143, "snorlax", 189, 21, 4600, ["normal"]),
+  },
+  {
+    id: 7,
+    name: "squirtle",
+    height: 5,
+    weight: 90,
+    abilities: [
+      {
+        slot: 1,
+        ability: {
+          name: "torrent",
+          url: "https://pokeapi.co/api/v2/ability/67/"
+        }
+      },
+      {
+        slot: 3,
+        ability: {
+          name: "rain-dish",
+          url: "https://pokeapi.co/api/v2/ability/44/"
+        }
+      }
+    ],
+    species: {
+      name: "squirtle",
+      url: "https://pokeapi.co/api/v2/pokemon-species/7/"
+    },
+    sprites: {
+      other: {
+        'official-artwork': {
+          front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png"
+        }
+      }
+    },
+    stats: [
+      {
+        base_stat: 44,
+        effort: 0,
+        stat: {
+          name: "hp",
+          url: "https://pokeapi.co/api/v2/stat/1/",
+        }
+      },
+      {
+        base_stat: 48,
+        effort: 0,
+        stat: {
+          name: "attack",
+          url: "https://pokeapi.co/api/v2/stat/2/",
+        }
+      },
+      {
+        base_stat: 65,
+        effort: 1,
+        stat: {
+          name: "defense",
+          url: "https://pokeapi.co/api/v2/stat/3/",
+        }
+      },
+      {
+        base_stat: 50,
+        effort: 0,
+        stat: {
+          name: "special-attack",
+          url: "https://pokeapi.co/api/v2/stat/4/",
+        }
+      },
+      {
+        base_stat: 64,
+        effort: 0,
+        stat: {
+          name: "special-defense",
+          url: "https://pokeapi.co/api/v2/stat/5/",
+        }
+      },
+      {
+        base_stat: 43,
+        effort: 0,
+        stat: {
+          name: "speed",
+          url: "https://pokeapi.co/api/v2/stat/6/",
+        }
+      }
+    ],
+    types:[
+      {
+        slot: 1,
+        type: {
+          name: "water",
+          url: "https://pokeapi.co/api/v2/type/11/"
+        }
+      }
+    ],
+  }
 ]
 
-console.log(pokedex[0].name);
+console.log(JSON.stringify(pokemons))
 
-pokedex.forEach(element => {
-  console.log(`ID: ${element.id}`);
-  console.log(`Nome: ${element.name}`);
-  console.log(`Base Experience: ${element.base_experience}`);
-  console.log(`Height: ${element.height}`);
-  console.log(`Weight: ${element.weight}`);
-  console.log(`Is default? ${element.is_default}`);
-  console.log(`Order: ${element.order}`);
-  console.log(`Types: ${JSON.stringify(element.types)}`)
-  console.log(`Abilities: ${element.abilities}`);
-  console.log(`Stats ${element.stats}\n`);
-  console.log(`Sprites: ${element.sprites}`)
-});
-
-const section = document.getElementById("section");
-
-pokedex.forEach((element) => {
-   const card = document.createElement("article")
-   card.classList.add("card")
-
-   card.innerHTML = `
-      <header class="card_header">
-         <p class="card_id">ID: ${element.id}</p>
-         <button class="sword_button" aria-label="Comparar pokémon">
-            ⚔️
-         </button>
-         <button class="hearth_button" aria-label="Favoritar pokémon">
-            <ion-icon name="heart-outline"><ion-icon>   
-         </button>
-      </header>
-      <main class="card_main">
-         <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/${element.id}.png" alt="${element.name}" class="card_img">
-      </main>
-      <footer class="card_footer">
-         <p class="card_title">Name: ${element.name}</p>
-      </footer>
-   `
-
-   section.appendChild(card)
-})
+//console.log(pokemons[0].sprites.other["official-artwork"].front_default)
