@@ -10,7 +10,7 @@ html body {
 }
 
 body {
-   background-image: url(./assets/Backgrounds/Background_Pokedex_roxo.png);
+   background-image: url(../../assets/Backgrounds/background_tela_erro.jpg);
    background-repeat: repeat-y;
    background-position: center;
    background-attachment: fixed;
