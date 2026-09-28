@@ -7,9 +7,15 @@ html body {
 :root {
    --light-bg: url(Backgrounds/Background_Pokedex_Paisagem.jpg);
    --dark-bg: url(Backgrounds/Background_Pokedex_roxo.png);
+   --bg-dark: #0b0618;
+   --purple: #9333ea;
+   --purple-soft: #c4b5fd;
+   --glass: rgba(20, 10, 40, 0.55);
+   --border-glow: 0 0 12px rgba(147, 51, 234, 0.5);
 }
 
 body {
+   margin: 0;
    background-image: url(./assets/Backgrounds/Background_Pokedex_roxo.png);
    background-repeat: repeat-y;
    background-position: center;
@@ -18,37 +24,34 @@ body {
    background-size: cover;
    flex-direction: column;
    min-height: 100vh;
-   /* propriedades que já existem continuam */
-   padding-top: 140px;    /* altura do header + navbar juntos, ajuste no olho */
-   padding-bottom: 80px;  /* altura do footer, ajuste no olho */
+   padding: 140px 20px 100px; 
+   padding-top: 140px;   
+   padding-bottom: 80px;  
 }
 
-
-/* HEADER */
 #header {
-   background: rgba(255, 255, 255, 0.1);
-   backdrop-filter: blur(10px);
-   -webkit-backdrop-filter: blur(10px);
+   position: fixed;
+   top: 10px;
+   left: 10px;
+   right: 10px;
+   height: 60px;
    display: flex;
    align-items: center;
-   position: relative;
-   border: solid green 5px;
+   padding: 0 15px;
+   box-sizing: border-box;
+   background: var(--glass);
+   backdrop-filter: blur(10px);
+   border: 1px solid var(--purple);
    border-radius: 20px;
-   transition: 0.3s;
-   padding: 15px;
-   height: 30px;
-   position: fixed;
-   top: 0;
-   left: 0;
-   width: 96.5%;
+   box-shadow: var(--border-glow);
    z-index: 100;
 }
 
 .title_pokedex {
+   color: white;
    position: absolute;
    left: 50%;
    transform: translateX(-50%);
-   border: solid green 3px;
    height: 40px;
    font-size: 35px;
    font-family: cursive;
@@ -56,10 +59,9 @@ body {
 }
 
 .more_options_button {
-   color: black;
-   border: solid green 3px;
+   color: white;
    border-radius: 50px;
-   font-size: 50px;
+   font-size: 40px;
    cursor: pointer;
    background: rgba(255, 255, 255, 0.1);
    backdrop-filter: blur(10px);
@@ -71,7 +73,7 @@ body {
 }
 
 .mail_box_button {
-   border: solid green 3px;
+   color: white;
    border-radius: 50px;
    font-size: 40px;
    margin-left: auto;
@@ -83,7 +85,7 @@ body {
 }
 
 .profile_button {
-   border: solid green 3px;
+   color: white;
    border-radius: 50px;
    font-size: 40px;
    background: rgba(255, 255, 255, 0.1);
@@ -102,22 +104,26 @@ body {
 
 /* NAVBAR */
 #navbar { /*blue*/
-   border: solid blue 5px;
-   border-radius: 100px;
+   position: fixed;
+   top: 80px;
+   left: 50%;
+   transform: translateX(-50%); 
+   width: 650px;
+   max-width: 90%;
    display: flex;
    justify-content: space-around;
-   transition: 0.5s;
-   position: fixed;
-   top: 70px;   /* ajuste conforme a altura real do seu #header (70px + padding/border) */
-   left: 0;
-   width: 99%;
+   background: var(--glass);
+   border: 1px solid var(--purple);
+   border-radius: 100px;
    z-index: 99;
 }
 
 .about_button,
 .home_button,
 .favorites_button {
-   border: solid blue 3px;
+   border: solid 3px;
+   border-color: var(--purple);
+   color: white;
    border-radius: 100px;
    font-size: 22px;
    font-family: cursive;
@@ -136,7 +142,7 @@ body {
 
 /* MAIN */
 #main {
-   border: solid yellow 5px;
+   border: none;
    border-radius: 20px;
    display: flex;
    flex-direction: column;
@@ -150,7 +156,8 @@ body {
 
 .searchbar {
    display: flex;
-   border: solid yellow 3px;
+   border: solid 3px;
+   border-color: var(--purple);
    font-size: 18px;
    color: black;
    background-color: white;
@@ -171,7 +178,6 @@ body {
 }
 
 .search_title {
-   border: solid yellow 3px;
    border-radius: 30px;
    background: none;
    font-size: 22px;
@@ -181,7 +187,6 @@ body {
 }
 
 .search_icon {
-   border: solid yellow 3px;
    border-radius: 30px;
    font-size: 22px;
    display: inline-block;
@@ -190,57 +195,58 @@ body {
 
 /* SECTION */
 #section {
-   border: solid purple 5px;
-   border-radius: 30px;
    display: grid;
-   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));   
-   gap: 15px;
+   grid-template-columns: repeat(5, 1fr);
+   gap: 60px;
    padding: 15px;
-   flex: 1;
    width: 100%;
+   max-width: 1100px;
+   margin: 0 auto;
+   box-sizing: border-box;
 }
 
 .card {
-   border: solid red 3px;
-   border-radius: 30px;
+   width: 100%;
+   height: auto;
+   aspect-ratio: 1 / 1.4;         
    display: flex;
    flex-direction: column;
-   width: 150px;
-   height: 200px;
+   background: var(--glass);
+   border: 1px solid var(--purple);
+   border-radius: 10px;
+   box-shadow: var(--border-glow);
    cursor: pointer;
    transition: 0.3s;
-   background: rgba(255, 255, 255, 0.1);
-   backdrop-filter: blur(10px);
-   -webkit-backdrop-filter: blur(10px);
 }
 
 .card:hover {
    scale: 1.1;
+   box-shadow: 0 0 22px rgba(147, 51, 234, 0.9);
 }
 
 .card_header {
-   border: solid red 3px;
+   border: solid 3px;
+   border-color: var(--purple);
    background-color: white;
    display: flex;                    
    align-items: center;              
    justify-content: space-around;
-   border-radius: 27px 27px 0 0;
+   height: auto;
    width: 100%;                     
    box-sizing: border-box;
-   border-radius: 50px;
+   border-radius: 10px;
    height: 40px;
-   font-size: 10px;
-   font-family: cursive;
+   box-shadow: 0 0 22px rgba(147, 51, 234, 0.9);
 }
 
 .card_id {
-   border: solid red 1px;
    font-size: 10px;
 }
 
 .sword_button {
-   border: solid red 1px;
-   border-radius: 50px;
+   border: solid 1px;
+   border-color: var(--purple);
+   border-radius: 100px;
    font-size: 15px;
    background: none;
    transition: 0.3s;
@@ -251,8 +257,8 @@ body {
 }
 
 .hearth_button {
-   border: solid red 1px;
-   border-radius: 50px;
+   border: solid 1px var(--purple);
+   border-radius: 100px;
    font-size: 15px;
    background: none;
    transition: 0.3s;
@@ -263,7 +269,7 @@ body {
 }
 
 .card_main {
-   border: solid purple 3px;
+   border: none;
    flex: 1;
    display: flex;
    justify-content: center;
@@ -279,26 +285,32 @@ body {
 }
 
 .card_footer {
-   border: solid red 3px;
-   border-radius: 50px;
+   display: flex;
+   border: solid var(--purple) 3px;
+   border-radius: 10px;
    background-color: white;
    display: flex;
+   box-shadow: 0 0 22px rgba(147, 51, 234, 0.9);
+   justify-content: center;
 }
 
 .card_title {
-   border: solid red 2px;
+   border: none;
    border-radius: 50px;
-   font-size: 10px;
+   font-size: 16px;
    margin: 10px;
 }
 
+.seemore_buton {
+   
+}
 
-/* FOOTER */
 #footer {
    background: rgba(255, 255, 255, 0.1);
    backdrop-filter: blur(10px);
    -webkit-backdrop-filter: blur(10px);
-   border: solid orange 5px;
+   border: solid 3px;
+   border-color: var(--purple);
    border-radius: 20px;
    transition: 0.5s;
    display: flex;
@@ -313,10 +325,11 @@ body {
 
 .github_button,
 .zap_button,
-.instagram_button,
-.trello_button {
-   border: solid orange 3px;
+.instagram_button {
+   border: solid 3px;
+   border-color: var(--purple);
    border-radius: 100px;
+   color: white;
    font-size: 30px;
    background: rgba(255, 255, 255, 0.1);
    backdrop-filter: blur(10px);

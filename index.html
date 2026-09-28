@@ -5,14 +5,10 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Pokedex</title>
-   
-   <!--LINK CSS-->
    <link rel="stylesheet" href="style.css">
 </head>
  
 <body>
-
-   <!--HEADER-->
    <header id="header">
       <button class="more_options_button" onclick="alert('Você clicou no botão!')">
          <ion-icon name="ellipsis-vertical-outline"></ion-icon>
@@ -32,7 +28,7 @@
    </header>
    
 
-   <!--NAVBAR-->
+
    <nav id="navbar">
       <button class="about_button" onclick="alert('Você clicou no botão!')">
          Sobre
@@ -47,7 +43,8 @@
       </button>
    </nav>
 
-   <!--MAIN-->
+
+
    <main id="main">
       <button class="searchbar" onclick="alert('Você clicou no botão!')">
          <h1 class="search_title">
@@ -59,9 +56,8 @@
          </h1>
       </button>
 
-      <!--SECTION-->
+
       <section id="section">
-         <!--Cartas-->
          <article class="card">
             <header class="card_header">
                <p class="card_id">ID: TESTE</p>
@@ -76,13 +72,18 @@
                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/4.png" alt="charmander" class="card_img">
             </main>
             <footer class="card_footer">
-               <p class="card_title">Name: TESTE</p>
+               <p class="card_title">TESTE</p>
             </footer>
          </article>
       </section>
+
+      <button class="seemore_button" onclick="alert('Você clicou no botão!')">
+         Ver mais
+      </button>
    </main>
 
-   <!--FOOTER-->
+
+
    <footer id="footer">
          <button class="github_button" onclick="alert('Você clicou no botão!')">
             <ion-icon name="logo-github"></ion-icon>
@@ -97,11 +98,12 @@
          </button>
    </footer>
 
-   <!--ICONS-->   
+   
    <script type="module" src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"></script>
    <script nomodule src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"></script>
+
+   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
    
-   <!--LINK JAVA SCRIPT-->
    <script src="scriptpokemon.js"></script>
    <script type="module" src="script.js"></script>
 </body>
