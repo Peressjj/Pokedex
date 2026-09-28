@@ -1,0 +1,181 @@
+html body {
+   height: 100%;
+   margin: 3px;
+   font-family: cursive;
+}
+
+:root {
+   --light-bg: url(Backgrounds/Background_Pokedex_Paisagem.jpg);
+   --dark-bg: url(Backgrounds/Background_Pokedex_roxo.png);
+}
+
+body {
+   background-image: url(./assets/Backgrounds/Background_Pokedex_roxo.png);
+   background-repeat: repeat-y;
+   background-position: center;
+   background-attachment: fixed;
+   display: flex;
+   background-size: cover;
+   flex-direction: column;
+   min-height: 100vh;
+   /* propriedades que já existem continuam */
+   padding-top: 140px;    /* altura do header + navbar juntos, ajuste no olho */
+   padding-bottom: 80px;  /* altura do footer, ajuste no olho */
+}
+
+#header {
+   background: rgba(255, 255, 255, 0.1);
+   backdrop-filter: blur(10px);
+   -webkit-backdrop-filter: blur(10px);
+   display: flex;
+   align-items: center;
+   position: relative;
+   border: solid green 5px;
+   border-radius: 20px;
+   transition: 0.3s;
+   padding: 15px;
+   height: 30px;
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 96.5%;
+   z-index: 100;
+}
+
+.title_pokedex {
+   position: absolute;
+   left: 50%;
+   transform: translateX(-50%);
+   border: solid green 3px;
+   height: 40px;
+   font-size: 35px;
+   font-family: cursive;
+   display: inline-block;  
+}
+
+.more_options_button {
+   color: black;
+   border: solid green 3px;
+   border-radius: 50px;
+   font-size: 50px;
+   cursor: pointer;
+   background: rgba(255, 255, 255, 0.1);
+   backdrop-filter: blur(10px);
+   -webkit-backdrop-filter: blur(10px);
+   cursor: pointer;
+   transition: 0.3s;
+   color: #ffffff;
+   filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.4));
+}
+
+.mail_box_button {
+   border: solid green 3px;
+   border-radius: 50px;
+   font-size: 40px;
+   margin-left: auto;
+   background: rgba(255, 255, 255, 0.1);
+   backdrop-filter: blur(10px);
+   -webkit-backdrop-filter: blur(10px);
+   cursor: pointer;
+   transition: 0.3s;
+}
+
+.profile_button {
+   border: solid green 3px;
+   border-radius: 50px;
+   font-size: 40px;
+   background: rgba(255, 255, 255, 0.1);
+   backdrop-filter: blur(10px);
+   -webkit-backdrop-filter: blur(10px);
+   cursor: pointer;
+   transition: 0.3s;
+}
+
+.more_options_button:hover,
+.mail_box_button:hover,
+.profile_button:hover {
+   transform: scale(1.05);
+}
+
+#navbar { /*blue*/
+   border: solid blue 5px;
+   border-radius: 100px;
+   display: flex;
+   justify-content: space-around;
+   transition: 0.5s;
+   position: fixed;
+   top: 70px;   /* ajuste conforme a altura real do seu #header (70px + padding/border) */
+   left: 0;
+   width: 99%;
+   z-index: 99;
+}
+
+.about_button,
+.home_button,
+.favorites_button {
+   border: solid blue 3px;
+   border-radius: 100px;
+   font-size: 22px;
+   font-family: cursive;
+   background: rgba(255, 255, 255, 0.1);
+   backdrop-filter: blur(10px);
+   -webkit-backdrop-filter: blur(10px);
+   cursor: pointer;
+   transition: 0.3s;
+}
+
+.favorites_button:hover,
+.about_button:hover,
+.home_button:hover {
+   transform: scale(1.05);
+}
+
+#main {
+   border: solid yellow 5px;
+   border-radius: 20px;
+   display: flex;
+   flex-direction: column;
+   justify-content: flex-start;
+   align-items: center;
+   flex: 1;
+   gap: 20px;
+   padding: 20px;
+   transition: 0.5s;
+}
+
+#footer {
+   background: rgba(255, 255, 255, 0.1);
+   backdrop-filter: blur(10px);
+   -webkit-backdrop-filter: blur(10px);
+   border: solid orange 5px;
+   border-radius: 20px;
+   transition: 0.5s;
+   display: flex;
+   justify-content: space-around;
+   position: fixed;
+   bottom: 0;
+   left: 0;
+   width: 99%;
+   z-index: 100;
+   /* resto das propriedades continua igual */
+}
+
+.github_button,
+.zap_button,
+.instagram_button,
+.trello_button {
+   border: solid orange 3px;
+   border-radius: 100px;
+   font-size: 30px;
+   background: rgba(255, 255, 255, 0.1);
+   backdrop-filter: blur(10px);
+   -webkit-backdrop-filter: blur(10px);
+   cursor: pointer;
+}  
+
+.github_button:hover,
+.zap_button:hover,
+.instagram_button:hover,
+.trello_button:hover {
+   transform: scale(1.05);
+}
