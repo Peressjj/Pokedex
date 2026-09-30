@@ -116,7 +116,7 @@ pokedex.forEach((element) => {
    card.classList.add("card")
 
    card.innerHTML = `
-      <header class="card_header">
+      <div class="card_header">
          <p class="card_id">ID: ${element.id}</p>
          <button class="sword_button" aria-label="Comparar pokémon">
             ⚔️
@@ -124,13 +124,13 @@ pokedex.forEach((element) => {
          <button class="hearth_button" aria-label="Favoritar pokémon">
             <ion-icon name="heart-outline"><ion-icon>   
          </button>
-      </header>
-      <main class="card_main">
+      </div>
+      <div class="card_main">
          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/${element.id}.png" alt="${element.name}" class="card_img">
-      </main>
-      <footer class="card_footer">
+      </div>
+      <div class="card_footer">
          <p class="card_title">${element.name}</p>
-      </footer>
+      </div>
    `
 
    section.appendChild(card)
