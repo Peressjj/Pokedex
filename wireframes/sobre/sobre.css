@@ -1,0 +1,96 @@
+body {
+   background-image: url(../../assets/Backgrounds/background_tela_erro.jpg);
+   margin: 0;
+   min-height: 100vh;
+   overflow: hidden;
+}
+
+:root {
+   --light-bg: url(Backgrounds/Background_Pokedex_Paisagem.jpg);
+   --dark-bg: url(Backgrounds/Background_Pokedex_roxo.png);
+   --bg-dark: #0b0618;
+   --purple: #9333ea;
+   --purple-soft: #c4b5fd;
+   --glass: rgba(20, 10, 40, 0.55);
+   --border-glow: 0 0 12px rgba(147, 51, 234, 0.5);
+}
+
+.sobre_projeto {
+   display: flex;
+   justify-content: space-between;
+   flex-direction: row;
+   background-color: var(--glass);
+   border: solid var(--purple) 1.5px;
+   height: 150px;
+   gap: 10px;
+   width: 100vh;
+   border-radius: 10px;
+   padding: 30px;
+}
+
+.grid_quadruplo {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   flex-direction: row;
+   background-color: var(--glass);
+   border: solid var(--purple) 1.5px;
+   height: 150px;
+   gap: 10px;
+   width: 100vh;
+   border-radius: 10px;
+   padding: 30px;
+}
+
+.quadrado {
+   border: solid var(--purple) 1.5px;
+   background-color: var(--glass);
+   border-radius: 10px;
+   height: 140px;
+   width: 160px;
+   padding: 10px;
+   transition: 0.3s;
+}
+
+.quadrado:hover {
+   scale: 1.05;
+}
+
+.texto_branco {
+   color: white;
+   font-size: 10px;
+   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.title_quadrado {
+   font-size: 30px;
+   color: white;
+   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.grid_duplo {
+   background-color: var(--glass);
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: row;
+   border: solid var(--purple) 1.5px;
+   height: 150px;
+   gap: 10px;
+   width: 120vh;
+   border-radius: 10px;
+}
+
+.retangulo {
+   background-color: var(--glass);
+   border: solid var(--purple) 1.5px;
+   border-radius: 10px;
+   height: 120px;
+   width: 480px;
+   transition: 0.3s;
+   padding: 10px;
+}
+
+.retangulo:hover {
+   scale: 1.03;
+}
