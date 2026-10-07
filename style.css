@@ -141,7 +141,7 @@ body {
    transform: scale(1.05);
 }
 
-#main {
+main {
    border: none;
    border-radius: 20px;
    display: flex;
@@ -315,7 +315,7 @@ body {
    scale: 1.05;
 }
 
-#footer {
+footer {
    background: var(--glass);
    backdrop-filter: blur(10px);
    border: solid 1px var(--purple);
