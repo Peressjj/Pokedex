@@ -1,9 +1,9 @@
-body {
+/* body {
    background-image: url(../../assets/Backgrounds/background_tela_erro.jpg);
    margin: 0;
    min-height: 100vh;
    overflow: hidden;
-}
+} */
 
 :root {
    --light-bg: url(Backgrounds/Background_Pokedex_Paisagem.jpg);
@@ -13,6 +13,10 @@ body {
    --purple-soft: #c4b5fd;
    --glass: rgba(20, 10, 40, 0.55);
    --border-glow: 0 0 12px rgba(147, 51, 234, 0.5);
+}
+
+#main {
+   gap: 30px;
 }
 
 .sobre_projeto {
@@ -66,31 +70,63 @@ body {
    font-size: 30px;
    color: white;
    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+   margin: 0;
 }
 
 .grid_duplo {
-   background-color: var(--glass);
    display: flex;
    justify-content: center;
-   align-items: center;
-   flex-direction: row;
-   border: solid var(--purple) 1.5px;
-   height: 150px;
-   gap: 10px;
-   width: 120vh;
-   border-radius: 10px;
+   align-items: stretch;
+   gap: 20px;
+   width: 100%;
+   max-width: 1000px;
 }
 
 .retangulo {
+   display: flex;
+   flex-direction: column;
+   gap: 20px;
+   box-sizing: border-box;
+   flex: 1;
+   min-height: 200px;
+   padding: 20px;
    background-color: var(--glass);
    border: solid var(--purple) 1.5px;
    border-radius: 10px;
-   height: 120px;
-   width: 480px;
    transition: 0.3s;
-   padding: 10px;
 }
 
 .retangulo:hover {
    scale: 1.03;
+}
+
+.quadradinhos {
+   display: grid;
+   grid-template-columns: repeat(6, 1fr);
+   gap: 10px;
+}
+
+.quadradinho {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 1px;
+   padding: 12px 6px;
+   transition: 0.3s;
+}
+
+.quadradinho img {
+   width: 40px;
+   height: 40px;
+   object-fit: contain;
+}
+
+.quadradinho i {
+   color: white;
+   font-size: 40px;
+}
+
+.icon_names {
+   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+   color: white;
 }
