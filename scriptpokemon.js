@@ -118,12 +118,14 @@ pokedex.forEach((element) => {
    card.innerHTML = `
       <div class="card_header">
          <p class="card_id">ID: ${element.id}</p>
-         <button class="sword_button" aria-label="Comparar pokémon">
-            ⚔️
-         </button>
-         <button class="hearth_button" aria-label="Favoritar pokémon">
-            <ion-icon name="heart-outline"><ion-icon>   
-         </button>
+         <div class="botoes">
+            <button class="sword_button" aria-label="Comparar pokémon">
+               ⚔️
+            </button>
+            <button class="hearth_button" aria-label="Favoritar pokémon">
+               <ion-icon name="heart-outline"></ion-icon>   
+            </button>
+         </div>
       </div>
       <div class="card_main">
          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/${element.id}.png" alt="${element.name}" class="card_img">

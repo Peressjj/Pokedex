@@ -12,7 +12,7 @@ header.innerHTML = `
       </button>
 
       <h1 class="title_pokedex">
-         Pokedex
+         ${document.title}
       </h1>
 
       <button class="mail_box_button" onclick="window.location.href='wireframes/perfil/perfil.html'">

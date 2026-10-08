@@ -32,6 +32,16 @@
    padding: 30px;
 }
 
+.grid_duplo {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+   align-items: stretch;
+   gap: 20px;
+   width: 100%;
+   max-width: 1000px;
+}
+
 .grid_quadruplo {
    display: flex;
    justify-content: space-between;
@@ -73,14 +83,6 @@
    margin: 0;
 }
 
-.grid_duplo {
-   display: flex;
-   justify-content: center;
-   align-items: stretch;
-   gap: 20px;
-   width: 100%;
-   max-width: 1000px;
-}
 
 .retangulo {
    display: flex;
@@ -93,11 +95,6 @@
    background-color: var(--glass);
    border: solid var(--purple) 1.5px;
    border-radius: 10px;
-   transition: 0.3s;
-}
-
-.retangulo:hover {
-   scale: 1.03;
 }
 
 .quadradinhos {
@@ -135,4 +132,55 @@
    font-size: 25px;
    color: white;
    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.retangulo_largo {
+   flex: 1 1 100%;
+}
+
+.equipe {
+   display: grid;
+   grid-template-columns: repeat(5, 1fr);
+   gap: 16px;
+}
+
+.membro {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 10px;
+   padding: 16px 10px;
+   background-color: var(--glass);
+   border: solid var(--purple) 1.5px;
+   border-radius: 10px;
+   text-align: center;
+   transition: 0.3s;
+}
+
+.membro img {
+   width: 90px;
+   height: 90px;
+   border-radius: 50%;
+   object-fit: cover;
+   border: solid var(--purple) 2px;
+   box-shadow: var(--border-glow);
+}
+
+.membro .nomes {
+   margin: 0;
+   font-size: 16px;
+}
+
+.email {
+   margin: 0;
+   font-size: 10px;
+   color: var(--purple-soft);
+   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+   overflow-wrap: anywhere;
+}
+
+@media (max-width: 900px) {
+   .equipe {
+      grid-template-columns: repeat(2, 1fr);
+   }
 }

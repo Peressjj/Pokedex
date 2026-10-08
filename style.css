@@ -229,12 +229,13 @@ main {
    background-color: white;
    display: flex;                    
    align-items: center;              
-   justify-content: space-around;
+   justify-content: space-between;
    height: auto;
    width: 100%;                     
    box-sizing: border-box;
    border-radius: 10px;
    height: 40px;
+   padding: 10px;
    box-shadow: 0 0 22px rgba(147, 51, 234, 0.9);
 }
 
@@ -242,9 +243,13 @@ main {
    font-size: 10px;
 }
 
+.botoes {
+   display: flex;
+   justify-content: end;
+}
+
 .sword_button {
-   border: solid 1px;
-   border-color: var(--purple);
+   border: none;
    border-radius: 100px;
    font-size: 15px;
    background: none;
@@ -256,7 +261,9 @@ main {
 }
 
 .hearth_button {
-   border: solid 1px var(--purple);
+   border: none;
+   display: flex;
+   align-items: center;
    border-radius: 100px;
    font-size: 15px;
    background: none;
