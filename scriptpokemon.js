@@ -1,24 +1,23 @@
 const pokemon = {
-   id: 0, // Identificador unico
-   name: "", // Nome
-   base_experience: 0, // Base de experiencia
-   height: 0, // altura em decímetros
-   weight: 0, // peso em hectogramas
-   is_default: true, // Forma padrao (true/false)
+   id: 0, 
+   name: "", 
+   base_experience: 0, 
+   height: 0, 
+   weight: 0, 
+   is_default: true, 
    order: 0,
 
-   // TIPOS
+   
    types: [
-      // tipos elementais
       {
-         slot: 1, // tipo 1
+         slot: 1, 
          type: {
             name: "",
             url: "",
          },
       },
       {
-         slot: 2, // tipo 2
+         slot: 2, 
          type: {
             name: "",
             url: "",
@@ -27,10 +26,9 @@ const pokemon = {
    ],
 
    abilities: [
-      // habilidades passivas
       {
-         is_hidden: false, // habilidade oculta
-         slot: 1, // tipo 1
+         is_hidden: false, 
+         slot: 1, 
          ability: {
             name: "",
             url: "",
@@ -39,22 +37,19 @@ const pokemon = {
    ],
 
    stats: [
-      // status
       {
-         base_stat: 0, // valor numerico do status
+         base_stat: 0, 
          stat: {
-            name: "", // "hp", "attack", "defense", "special-attack", "special-defense", "speed"
+            name: "", 
             url: "",
          },
       },
    ],
 
    sprites: {
-      // imagens/icones do pokemon
-      front_default: "", // imagem padrao (frente)
+      front_default: "", 
    },
    species: {
-      // espécies do pokemon
       name: "",
       url: "",
    },
@@ -92,22 +87,6 @@ const pokedex = [
    criarPokemon(129, "magikarp", 40, 9, 100, ["water"]),
    criarPokemon(143, "snorlax", 189, 21, 4600, ["normal"]),
 ]
-
-console.log(pokedex[0].name);
-
-pokedex.forEach(element => {
-  console.log(`ID: ${element.id}`);
-  console.log(`Nome: ${element.name}`);
-  console.log(`Base Experience: ${element.base_experience}`);
-  console.log(`Height: ${element.height}`);
-  console.log(`Weight: ${element.weight}`);
-  console.log(`Is default? ${element.is_default}`);
-  console.log(`Order: ${element.order}`);
-  console.log(`Types: ${JSON.stringify(element.types)}`)
-  console.log(`Abilities: ${element.abilities}`);
-  console.log(`Stats ${element.stats}\n`);
-  console.log(`Sprites: ${element.sprites}`)
-});
 
 const section = document.getElementById("section");
 
