@@ -1,5 +1,7 @@
 console.log(`JS conectado!\n`)
 
+const raiz = new URL("./", import.meta.url).href
+
 function botao() {
    alert("Botao")
 }
@@ -15,7 +17,7 @@ header.innerHTML = `
          ${document.title}
       </h1>
 
-      <button class="profile_button" onclick="window.location.href='wireframes/perfil/perfil.html'">
+      <button class="profile_button" onclick="window.location.href='${raiz}wireframes/perfil/perfil.html'">
          <ion-icon name="person-circle-outline"></ion-icon>
       </button>
 `
@@ -23,27 +25,23 @@ header.innerHTML = `
 const navbar = document.getElementById("navbar")
 navbar.classList.add("navbar")
 navbar.innerHTML = `
-   <button class="about_button" onclick="window.location.href='wireframes/sobre/sobre.html'">
-         Sobre
-      </button>
+   <button class="about_button" onclick="window.location.href='${raiz}wireframes/sobre/sobre.html'">
+      Sobre
+   </button>
 
-      <button class="home_button" onclick="window.location.href='wireframes/index/index.html'">
-         Início
-      </button>
+   <button class="home_button" onclick="window.location.href='${raiz}index.html'">
+      Início
+   </button>
 
-      <button class="favorites_button" onclick="window.location.href='wireframes/favoritos/favoritos.html'">
-         Favoritos
-      </button>
+   <button class="favorites_button" onclick="window.location.href='${raiz}wireframes/favoritos/favoritos.html'">
+      Favoritos
+   </button>
 `
 
 const footer = document.getElementById("footer")
 footer.classList.add("footer")
 footer.innerHTML = `
-   <button class="github_button" onclick="alert('Você clicou no botão!')">
+   <button class="github_button" onclick="window.open('https://github.com/Peressjj/pokedex', '_blank', 'noopener,noreferrer')">
       <ion-icon name="logo-github"></ion-icon>
-   </button>
-            
-   <button class="zap_button" onclick="alert('Você clicou no botão!')">
-      <ion-icon name="logo-whatsapp"></ion-icon>
    </button>
 `
