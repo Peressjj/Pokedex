@@ -73,7 +73,7 @@ body {
    filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.4));
 }
 
-.mail_box_button {
+.profile_button {
    border-color: var(--purple);
    color: white;
    border-radius: 50px;
@@ -86,20 +86,7 @@ body {
    transition: 0.3s;
 }
 
-.profile_button {
-   border-color: var(--purple);
-   color: white;
-   border-radius: 50px;
-   font-size: 40px;
-   background: rgba(255, 255, 255, 0.1);
-   backdrop-filter: blur(10px);
-   -webkit-backdrop-filter: blur(10px);
-   cursor: pointer;
-   transition: 0.3s;
-}
-
 .more_options_button:hover,
-.mail_box_button:hover,
 .profile_button:hover {
    transform: scale(1.05);
 }

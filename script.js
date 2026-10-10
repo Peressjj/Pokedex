@@ -15,10 +15,6 @@ header.innerHTML = `
          ${document.title}
       </h1>
 
-      <button class="mail_box_button" onclick="window.location.href='wireframes/perfil/perfil.html'">
-         <ion-icon name="mail-outline"></ion-icon>
-      </button>
-
       <button class="profile_button" onclick="window.location.href='wireframes/perfil/perfil.html'">
          <ion-icon name="person-circle-outline"></ion-icon>
       </button>
