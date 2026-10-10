@@ -1,23 +1,24 @@
+console.log("scriptpokemons.js carregado!")
+
 const pokemon = {
-   id: 0, 
-   name: "", 
-   base_experience: 0, 
-   height: 0, 
-   weight: 0, 
-   is_default: true, 
+   id: 0,
+   name: "",
+   base_experience: 0,
+   height: 0,
+   weight: 0,
+   is_default: true,
    order: 0,
 
-   
    types: [
       {
-         slot: 1, 
+         slot: 1,
          type: {
             name: "",
             url: "",
          },
       },
       {
-         slot: 2, 
+         slot: 2,
          type: {
             name: "",
             url: "",
@@ -27,8 +28,8 @@ const pokemon = {
 
    abilities: [
       {
-         is_hidden: false, 
-         slot: 1, 
+         is_hidden: false,
+         slot: 1,
          ability: {
             name: "",
             url: "",
@@ -38,16 +39,16 @@ const pokemon = {
 
    stats: [
       {
-         base_stat: 0, 
+         base_stat: 0,
          stat: {
-            name: "", 
+            name: "",
             url: "",
          },
       },
    ],
 
    sprites: {
-      front_default: "", 
+      front_default: "",
    },
    species: {
       name: "",
@@ -88,7 +89,32 @@ const pokedex = [
    criarPokemon(143, "snorlax", 189, 21, 4600, ["normal"]),
 ]
 
-const section = document.getElementById("section");
+const section = document.getElementById("section")
+
+function lerFavoritos() {
+   return JSON.parse(localStorage.getItem("favoritos")) || []
+}
+
+function salvarFavoritos(lista) {
+   localStorage.setItem("favoritos", JSON.stringify(lista))
+}
+
+function estaFavoritado(id) {
+   return lerFavoritos().some((fav) => fav.id === id)
+}
+
+function alternarFavorito(pokemon) {
+   const favoritos = lerFavoritos()
+
+   if (estaFavoritado(pokemon.id)) {
+      salvarFavoritos(favoritos.filter((fav) => fav.id !== pokemon.id))
+      return false
+   }
+
+   favoritos.push({ id: pokemon.id, name: pokemon.name })
+   salvarFavoritos(favoritos)
+   return true
+}
 
 pokedex.forEach((element) => {
    const card = document.createElement("article")
@@ -113,6 +139,18 @@ pokedex.forEach((element) => {
          <p class="card_title">${element.name}</p>
       </div>
    `
+
+   const heartButton = card.querySelector(".hearth_button")
+   const heartIcon = heartButton.querySelector("ion-icon")
+
+   if (estaFavoritado(element.id)) {
+      heartIcon.setAttribute("name", "heart")
+   }
+
+   heartButton.addEventListener("click", () => {
+      const virouFavorito = alternarFavorito(element)
+      heartIcon.setAttribute("name", virouFavorito ? "heart" : "heart-outline")
+   })
 
    section.appendChild(card)
 })

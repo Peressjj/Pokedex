@@ -4,7 +4,7 @@ function botao() {
    alert("Botao")
 }
 
-const head = document.getElementById("header")
+const header = document.getElementById("header")
 header.classList.add("header")
 header.innerHTML = `
       <button class="more_options_button" onclick="alert('Você clicou no botão!')">
@@ -24,7 +24,7 @@ header.innerHTML = `
       </button>
 `
 
-const nav = document.getElementById("navbar")
+const navbar = document.getElementById("navbar")
 navbar.classList.add("navbar")
 navbar.innerHTML = `
    <button class="about_button" onclick="window.location.href='wireframes/sobre/sobre.html'">
@@ -40,7 +40,7 @@ navbar.innerHTML = `
       </button>
 `
 
-const foot = document.getElementById("footer")
+const footer = document.getElementById("footer")
 footer.classList.add("footer")
 footer.innerHTML = `
    <button class="github_button" onclick="alert('Você clicou no botão!')">

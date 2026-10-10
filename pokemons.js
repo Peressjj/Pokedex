@@ -1,3 +1,5 @@
+console.log("pokemons.js conectado!")
+
 const pokemons=[
   {
     id: 1,
@@ -287,5 +289,3 @@ const pokemons=[
 ]
 
 console.log(JSON.stringify(pokemons))
-
-//console.log(pokemons[0].sprites.other["official-artwork"].front_default)
