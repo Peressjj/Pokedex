@@ -91,6 +91,80 @@ body {
    transform: scale(1.05);
 }
 
+.popup {
+   flex-direction: column;
+   gap: 16px;
+   width: 280px;
+   padding: 20px;
+   border-radius: 16px;
+   border: solid var(--purple) 1.5px;
+   background-color: var(--glass);
+   backdrop-filter: blur(10px);
+   color: white;
+}
+
+.popup[open] {
+   display: flex;
+}
+
+.popup::backdrop {
+   background: rgba(0, 0, 0, 0.6);
+}
+
+.title_popup {
+   font-size: 18px;
+   text-align: center;
+}
+
+.config_grid {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+
+.config_text {
+   font-size: 15px;
+}
+
+.light_button {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 44px;
+   height: 44px;
+   border-radius: 50%;
+   border: solid var(--purple) 1.5px;
+   background: transparent;
+   color: white;
+   font-size: 22px;
+   cursor: pointer;
+   transition: 0.3s;
+}
+
+.light_button:hover {
+   scale: 1.08;
+   border-color: white;
+   color: black;
+   background-color: white;
+}
+
+.fechar_popup {
+   align-self: flex-end;
+   border-radius: 10px;
+   border: solid var(--purple) 1.5px;
+   background: none;
+   color: white;
+   font-family: cursive;
+   cursor: pointer;
+   transition: 0.3s;
+}
+
+.fechar_popup:hover {
+   scale: 1.03;
+   background-color: black;
+   color: red;
+}
+
 #navbar { 
    position: fixed;
    top: 80px;
