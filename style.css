@@ -178,6 +178,7 @@ body {
    border: 1px solid var(--purple);
    border-radius: 100px;
    z-index: 99;
+   backdrop-filter: blur(10px);
 }
 
 .about_button,

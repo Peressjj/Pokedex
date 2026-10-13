@@ -117,28 +117,29 @@ function alternarFavorito(pokemon) {
 }
 
 pokedex.forEach((element) => {
-   const card = document.createElement("article")
-   card.classList.add("card")
+const card = document.createElement("article")
+card.classList.add("card")
+card.innerHTML = `
+   <div class="card_header">
+      <p class="card_id">ID: ${element.id}</p>
+   
+      <div class="botoes">
+         <button class="sword_button">
+            ⚔️
+         </button>
+         <button class="hearth_button" aria-label="Favoritar pokémon">
+            <ion-icon name="heart-outline"></ion-icon>   
+         </button>
+      </div>
 
-   card.innerHTML = `
-      <div class="card_header">
-         <p class="card_id">ID: ${element.id}</p>
-         <div class="botoes">
-            <button class="sword_button" aria-label="Comparar pokémon">
-               ⚔️
-            </button>
-            <button class="hearth_button" aria-label="Favoritar pokémon">
-               <ion-icon name="heart-outline"></ion-icon>   
-            </button>
-         </div>
-      </div>
-      <div class="card_main">
-         <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/${element.id}.png" alt="${element.name}" class="card_img">
-      </div>
-      <div class="card_footer">
-         <p class="card_title">${element.name}</p>
-      </div>
-   `
+   </div>
+   <div class="card_main">
+      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/${element.id}.png" alt="${element.name}" class="card_img">
+   </div>
+   <div class="card_footer">
+      <p class="card_title">${element.name}</p>
+   </div>
+`
 
    const heartButton = card.querySelector(".hearth_button")
    const heartIcon = heartButton.querySelector("ion-icon")
