@@ -25,7 +25,7 @@ function displayFavorito(){
                         <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/${favorito.id}.png" alt="${favorito.name}" class="card_img">
                     </div>
                     <div class="card_footer">
-                        <p class="card_title">Name: ${favorito.name}</p>
+                        <p class="card_title">${favorito.name}</p>
                     </div>
                 `;
             
