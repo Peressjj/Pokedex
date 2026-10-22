@@ -117,9 +117,9 @@ function alternarFavorito(pokemon) {
 }
 
 pokedex.forEach((element) => {
-const card = document.createElement("article")
-card.classList.add("card")
-card.innerHTML = `
+   const card = document.createElement("article")
+   card.classList.add("card")
+   card.innerHTML = `
    <div class="card_header">
       <p class="card_id">ID: ${element.id}</p>
    
@@ -137,7 +137,7 @@ card.innerHTML = `
       <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/${element.id}.png" alt="${element.name}" class="card_img">
    </div>
    <div class="card_footer">
-      <p class="card_title">${element.name}</p>
+      <p class="card_title" style="text-transform: uppercase">${element.name}</p>
    </div>
 `
 
