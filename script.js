@@ -1,6 +1,6 @@
 console.log(`JS conectado!\n`)
 
-const raiz = new URL("./", import.meta.url).href
+const raiz = document.currentScript.src.replace(/script\.js$/, "");
 
 function botao() {
    alert("Botao")
@@ -20,6 +20,21 @@ header.innerHTML = `
       <button class="profile_button" onclick="window.location.href='${raiz}wireframes/perfil/perfil.html'">
          <ion-icon name="person-circle-outline"></ion-icon>
       </button>
+
+      <nav id="navbar">
+         <button class="about_button" onclick="window.location.href='${raiz}wireframes/sobre/sobre.html'">
+            Sobre
+         </button>
+
+         <button class="home_button" onclick="window.location.href='${raiz}index.html'">
+            Início
+         </button>
+
+         <button class="favorites_button" onclick="window.location.href='${raiz}wireframes/favoritos/favoritos.html'">
+            Favoritos
+         </button>
+      </nav>
+   </header>
 `
 
 /*
@@ -36,22 +51,6 @@ dialog.innerHTML = `
    <button class="fechar_popup">Fechar</button>
 `
 */
-
-const navbar = document.getElementById("navbar")
-navbar.classList.add("navbar")
-navbar.innerHTML = `
-   <button class="about_button" onclick="window.location.href='${raiz}wireframes/sobre/sobre.html'">
-      Sobre
-   </button>
-
-   <button class="home_button" onclick="window.location.href='${raiz}index.html'">
-      Início
-   </button>
-
-   <button class="favorites_button" onclick="window.location.href='${raiz}wireframes/favoritos/favoritos.html'">
-      Favoritos
-   </button>
-`
 
 const footer = document.getElementById("footer")
 footer.classList.add("footer")
