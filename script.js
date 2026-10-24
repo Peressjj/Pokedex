@@ -9,48 +9,35 @@ function botao() {
 const header = document.getElementById("header")
 header.classList.add("header")
 header.innerHTML = `
-      <button class="more_options_button">
-         <ion-icon name="ellipsis-vertical-outline"></ion-icon>
-      </button>
+   <button class="more_options_button">
+      <ion-icon name="ellipsis-vertical-outline"></ion-icon>
+   </button>
 
-      <h1 class="title_pokedex">
-         ${document.title}
-      </h1>
+   <h1 class="title_pokedex">
+      ${document.title}
+   </h1>
 
-      <button class="profile_button" onclick="window.location.href='${raiz}wireframes/perfil/perfil.html'">
-         <ion-icon name="person-circle-outline"></ion-icon>
-      </button>
-
-      <nav id="navbar">
-         <button class="about_button" onclick="window.location.href='${raiz}wireframes/sobre/sobre.html'">
-            Sobre
-         </button>
-
-         <button class="home_button" onclick="window.location.href='${raiz}index.html'">
-            Início
-         </button>
-
-         <button class="favorites_button" onclick="window.location.href='${raiz}wireframes/favoritos/favoritos.html'">
-            Favoritos
-         </button>
-      </nav>
-   </header>
+   <button class="profile_button" onclick="window.location.href='${raiz}wireframes/perfil/perfil.html'">
+      <ion-icon name="person-circle-outline"></ion-icon>
+   </button>
+   
 `
 
-/*
-const dialog = document.getElementById("dialog")
-dialog.classList.add("dialog")
-dialog.innerHTML = `
-   <h2 class="title_popup">Configurações:</h2>
-   <div class="config_grid">
-      <p class="config_text">Modo escuro:</p>
-      <button class="light_button" aria-label="Alternar modo escuro">
-         <ion-icon name="sunny-outline"></ion-icon>
-      </button>
-   </div>
-   <button class="fechar_popup">Fechar</button>
+const navbar = document.getElementById("navbar")
+navbar.classList.add("navbar")
+navbar.innerHTML = `
+   <button class="about_button" onclick="window.location.href='${raiz}wireframes/sobre/sobre.html'">
+      Sobre
+   </button>
+
+   <button class="home_button" onclick="window.location.href='${raiz}index.html'">
+      Início
+   </button>
+
+   <button class="favorites_button" onclick="window.location.href='${raiz}wireframes/favoritos/favoritos.html'">
+      Favoritos
+   </button>
 `
-*/
 
 const footer = document.getElementById("footer")
 footer.classList.add("footer")

@@ -1,3 +1,7 @@
+* {
+   box-sizing: border-box;
+}
+
 html body {
    height: 100%;
    margin: 3px;
@@ -71,6 +75,10 @@ body {
    transition: 0.3s;
    color: #ffffff;
    filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.4));
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 55px;
 }
 
 .profile_button {
@@ -84,6 +92,10 @@ body {
    -webkit-backdrop-filter: blur(10px);
    cursor: pointer;
    transition: 0.3s;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 55px;
 }
 
 .more_options_button:hover,
@@ -101,6 +113,7 @@ body {
    background-color: var(--glass);
    backdrop-filter: blur(10px);
    color: white;
+   max-width: 90vw;
 }
 
 .popup[open] {
@@ -212,7 +225,7 @@ main {
    align-items: center;
    flex: 1;
    gap: 20px;
-   padding: 20px;
+   padding: 10px 0;
    transition: 0.5s;
 }
 
@@ -224,12 +237,12 @@ main {
    color: black;
    background-color: white;
    border-radius: 30px;
-   padding: 2px 5px;
+   padding: 2px 10px;
    width: 50%;
    justify-content: space-between;
    cursor: text;
    position: sticky;
-   top: 120px;
+   top: 135px;
    margin: 0 auto; 
    z-index: 10;
    transition: 0.3s;
@@ -257,13 +270,13 @@ main {
 
 #section {
    display: grid;
-   grid-template-columns: repeat(5, 1fr);
    gap: 60px;
    padding: 15px;
    width: 100%;
    max-width: 1100px;
    margin: 0 auto;
    box-sizing: border-box;
+   grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
 }
 
 .card {
@@ -345,8 +358,10 @@ main {
 }
 
 .card_img {
-   width: 120px;
-   height: 120px;
+   width: 80%;
+   max-width: 120px;
+   height: auto;
+   aspect-ratio: 1 / 1;
    object-fit: contain;
    background-position: center;
    background-repeat: no-repeat;
@@ -397,17 +412,14 @@ footer {
    padding: 0 15px;
    bottom: 0;
    left: 0;
-   width: 99%;
-   box-shadow: 0 0 22px var(--border-glow);
+   box-shadow: var(--border-glow);
    left: 10px;
    right: 10px;
    height: 45px;
    box-sizing: border-box;
 }
 
-.github_button,
-.zap_button,
-.instagram_button {
+.github_button {
    border: solid 3px;
    border-color: var(--purple);
    border-radius: 100px;
@@ -417,11 +429,64 @@ footer {
    backdrop-filter: blur(10px);
    -webkit-backdrop-filter: blur(10px);
    cursor: pointer;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 45px;
 }  
 
-.github_button:hover,
-.zap_button:hover,
-.instagram_button:hover,
-.trello_button:hover {
+.github_button:hover {
    transform: scale(1.05);
+}
+
+@media (max-width: 900px) {
+   #section {
+      gap: 30px;
+   }
+
+   .title_pokedex {
+      font-size: 28px;
+   }
+}
+
+@media (max-width: 600px) {
+   body {
+      padding: 130px 10px 70px;
+   }
+
+   .title_pokedex {
+      font-size: 22px;
+   }
+
+   .more_options_button,
+   .profile_button {
+      font-size: 28px;
+   }
+
+   .about_button,
+   .home_button,
+   .favorites_button {
+      font-size: 16px;
+      border-width: 2px;
+   }
+
+   .searchbar {
+      width: 90%;
+   }
+
+   #section {
+      gap: 16px;
+      padding: 5px;
+   }
+
+   .card_title {
+      font-size: 13px;
+      margin: 6px;
+   }
+
+   .github_button,
+   .zap_button,
+   .instagram_button {
+      font-size: 22px;
+   }
 }
