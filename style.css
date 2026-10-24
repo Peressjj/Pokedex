@@ -229,7 +229,7 @@ main {
    transition: 0.5s;
 }
 
-.searchbar {
+#searchbar {
    display: flex;
    border: solid 3px;
    border-color: var(--purple);
@@ -240,6 +240,7 @@ main {
    padding: 2px 10px;
    width: 50%;
    justify-content: space-between;
+   align-items: center;
    cursor: text;
    position: sticky;
    top: 135px;
@@ -248,7 +249,36 @@ main {
    transition: 0.3s;
 }
 
-.searchbar:hover {
+.search_input {
+   flex: 1;
+   min-width: 0;
+   border: none;
+   outline: none;
+   background: none;
+   font-family: cursive;
+   font-size: 15px;
+   color: black;
+}
+
+.search_input::placeholder {
+   color: rgba(0, 0, 0, 0.4);
+}
+
+#searchbar:focus-within {
+   box-shadow: 0 0 12px var(--purple);
+}
+
+.card[hidden] {
+   display: none;
+}
+
+#sem_resultado {
+   color: white;
+   font-size: 20px;
+   text-align: center;
+}
+
+#searchbar:hover {
    transform: scale(1.02);
 }
 

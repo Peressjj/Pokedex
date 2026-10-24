@@ -22,7 +22,7 @@ cardElement.innerHTML = `
         </div>
     </div>
     <div class="card_main">
-        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/${favorito.id}.png" alt="${favorito.name}" class="card_img">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${favorito.id}.png" alt="${favorito.name}" class="card_img">
     </div>
     <div class="card_footer">
         <p class="card_title">${favorito.name}</p>

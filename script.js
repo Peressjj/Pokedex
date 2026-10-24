@@ -38,6 +38,52 @@ navbar.innerHTML = `
    </button>
 `
 
+const searchbar = document.getElementById("searchbar")
+searchbar.classList.add("searchbar")
+searchbar.innerHTML = `
+   <input type="search" id="search_input" class="search_input"
+      placeholder="Pesquisar..." autocomplete="off" aria-label="Pesquisar Pokémon">
+   <span class="search_icon">🔍</span>
+`
+
+const inputPesquisa = document.getElementById("search_input")
+
+searchbar.addEventListener("click", () => inputPesquisa.focus())
+
+function normalizar(texto) {
+   return texto
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .trim()
+}
+
+const semResultado = document.getElementById("sem_resultado")
+
+inputPesquisa.addEventListener("input", () => {
+   const termo = normalizar(inputPesquisa.value)
+   const cards = document.querySelectorAll(".card")
+   let encontrados = 0
+
+   cards.forEach((card) => {
+      const nome = normalizar(card.querySelector(".card_title").textContent)
+      const id = normalizar(card.querySelector(".card_id").textContent)
+      const combina = nome.includes(termo) || id.includes(termo)
+
+      card.hidden = !combina
+      if (combina) encontrados++
+   })
+
+   semResultado.hidden = encontrados > 0
+})
+
+
+
+
+
+
+
+
 const footer = document.getElementById("footer")
 footer.classList.add("footer")
 footer.innerHTML = `

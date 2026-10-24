@@ -1,10 +1,3 @@
-/* body {
-   background-image: url(../../assets/Backgrounds/background_tela_erro.jpg);
-   margin: 0;
-   min-height: 100vh;
-   overflow: hidden;
-} */
-
 :root {
    --light-bg: url(Backgrounds/Background_Pokedex_Paisagem.jpg);
    --dark-bg: url(Backgrounds/Background_Pokedex_roxo.png);
