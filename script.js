@@ -20,7 +20,6 @@ header.innerHTML = `
    <button class="profile_button" onclick="window.location.href='${raiz}wireframes/perfil/perfil.html'">
       <ion-icon name="person-circle-outline"></ion-icon>
    </button>
-   
 `
 
 const navbar = document.getElementById("navbar")
@@ -48,6 +47,17 @@ footer.innerHTML = `
 `
 
 const popup = document.querySelector(".popup")
+popup.classList.add("popup")
+popup.innerHTML = `
+   <h2 class="title_popup">Configurações:</h2>
+   <div class="config_grid">
+      <p class="config_text">Modo claro:</p>
+      <button class="light_button" aria-label="Alternar modo escuro">
+         <ion-icon name="sunny-outline"></ion-icon>
+      </button>
+   </div>
+   <button class="fechar_popup">Fechar</button>
+`
 
 document.querySelector(".more_options_button").addEventListener("click", () => {
    popup.showModal()
