@@ -9,17 +9,19 @@ function botao() {
 const header = document.getElementById("header")
 header.classList.add("header")
 header.innerHTML = `
-   <button class="more_options_button">
-      <ion-icon name="ellipsis-vertical-outline"></ion-icon>
-   </button>
+   <div id="header-content">
+      <button class="more_options_button">
+         <ion-icon name="ellipsis-vertical-outline"></ion-icon>
+      </button>
 
-   <h1 class="title_pokedex">
-      ${document.title}
-   </h1>
+      <h1 class="title_pokedex">
+         ${document.title}
+      </h1>
 
-   <button class="profile_button" onclick="window.location.href='${raiz}wireframes/perfil/perfil.html'">
-      <ion-icon name="person-circle-outline"></ion-icon>
-   </button>
+      <button class="profile_button" onclick="window.location.href='${raiz}wireframes/perfil/perfil.html'">
+         <ion-icon name="person-circle-outline"></ion-icon>
+      </button>
+   </div>
 
    <nav id="navbar">
       <button class="about_button" onclick="window.location.href='${raiz}wireframes/sobre/sobre.html'">

@@ -33,7 +33,7 @@ body {
    padding-bottom: 80px;  
 }
 
-#header {
+#header-content {
    background: var(--glass);
    backdrop-filter: blur(10px);
    border: 1px solid var(--purple);
