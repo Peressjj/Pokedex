@@ -20,22 +20,20 @@ header.innerHTML = `
    <button class="profile_button" onclick="window.location.href='${raiz}wireframes/perfil/perfil.html'">
       <ion-icon name="person-circle-outline"></ion-icon>
    </button>
-`
 
-const navbar = document.getElementById("navbar")
-navbar.classList.add("navbar")
-navbar.innerHTML = `
-   <button class="about_button" onclick="window.location.href='${raiz}wireframes/sobre/sobre.html'">
-      Sobre
-   </button>
+   <nav id="navbar">
+      <button class="about_button" onclick="window.location.href='${raiz}wireframes/sobre/sobre.html'">
+         Sobre
+      </button>
 
-   <button class="home_button" onclick="window.location.href='${raiz}index.html'">
-      Início
-   </button>
+      <button class="home_button" onclick="window.location.href='${raiz}index.html'">
+         Início
+      </button>
 
-   <button class="favorites_button" onclick="window.location.href='${raiz}wireframes/favoritos/favoritos.html'">
-      Favoritos
-   </button>
+      <button class="favorites_button" onclick="window.location.href='${raiz}wireframes/favoritos/favoritos.html'">
+         Favoritos
+      </button>
+   </nav>
 `
 
 const searchbar = document.getElementById("searchbar")
