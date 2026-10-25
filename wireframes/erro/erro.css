@@ -1,0 +1,23 @@
+body {
+   background-image: url(../../assets/Backgrounds/background_tela_erro.jpg);
+   margin: 0;
+   min-height: 100vh;
+   overflow: hidden;
+}
+
+.return_button {
+   color: white;
+   border-radius: 10px;
+   font-size: 50px;
+   border-color: red;
+   background-color: var(--glass);
+   box-shadow: 0 0 22px red;
+   transition: 0.3s;
+   padding: 10px;
+   transition: 0.3s;
+   cursor: pointer;
+}
+
+.return_button:hover {
+   scale: 1.3;
+}
