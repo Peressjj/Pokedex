@@ -7,36 +7,59 @@ function botao() {
 }
 
 const header = document.getElementById("header")
-header.classList.add("header")
-header.innerHTML = `
-   <div id="header-content">
-      <button class="more_options_button">
-         <ion-icon name="ellipsis-vertical-outline"></ion-icon>
-      </button>
 
-      <h1 class="title_pokedex">
-         ${document.title}
-      </h1>
+if (header) {
+   header.classList.add("header")
+   header.innerHTML = `
+      <div id="header-content">
+         <button class="more_options_button">
+            <ion-icon name="ellipsis-vertical-outline"></ion-icon>
+         </button>
 
-      <button class="profile_button" onclick="window.location.href='${raiz}wireframes/perfil/perfil.html'">
-         <ion-icon name="person-circle-outline"></ion-icon>
-      </button>
-   </div>
+         <h1 class="title_pokedex">
+            ${document.title}
+         </h1>
 
-   <nav id="navbar">
-      <button class="about_button" onclick="window.location.href='${raiz}wireframes/sobre/sobre.html'">
-         Sobre
-      </button>
+         <button class="profile_button" onclick="window.location.href='${raiz}wireframes/perfil/perfil.html'">
+            <ion-icon name="person-circle-outline"></ion-icon>
+         </button>
+      </div>
 
-      <button class="home_button" onclick="window.location.href='${raiz}index.html'">
-         Início
-      </button>
+      <nav id="navbar">
+         <button class="about_button" onclick="window.location.href='${raiz}wireframes/sobre/sobre.html'">
+            Sobre
+         </button>
 
-      <button class="favorites_button" onclick="window.location.href='${raiz}wireframes/favoritos/favoritos.html'">
-         Favoritos
-      </button>
-   </nav>
-`
+         <button class="home_button" onclick="window.location.href='${raiz}index.html'">
+            Início
+         </button>
+
+         <button class="favorites_button" onclick="window.location.href='${raiz}wireframes/favoritos/favoritos.html'">
+            Favoritos
+         </button>
+      </nav>
+   `
+}
+
+const popup = document.querySelector(".popup")
+
+if (popup) {
+   popup.innerHTML = `
+      <h2 class="title_popup">Configurações:</h2>
+      <div class="config_grid">
+         <p class="config_text">Modo claro:</p>
+         <button class="light_button" aria-label="Alternar modo escuro">
+            <ion-icon name="sunny-outline"></ion-icon>
+         </button>
+      </div>
+      <button class="fechar_popup">Fechar</button>
+   `
+   document.querySelector(".more_options_button")
+      ?.addEventListener("click", () => popup.showModal())
+
+   popup.querySelector(".fechar_popup")
+      ?.addEventListener("click", () => popup.close())
+}
 
 const detalhes = document.getElementById("detalhes")
 detalhes.classList.add("detalhes")
@@ -206,12 +229,12 @@ async function abrirDetalhes(pokemon) {
       </div>
    `;
 
+   detalhes.querySelector(".detalhe-fechar").addEventListener("click", () => {
+      detalhes.close();
+   });
+
    detalhes.showModal();
 }
-
-fecharDetalhes.addEventListener("click", () => {
-   detalhes.close();
-});
 
 const searchbar = document.getElementById("searchbar")
 searchbar.classList.add("searchbar")
@@ -259,24 +282,3 @@ footer.innerHTML = `
       <ion-icon name="logo-github"></ion-icon>
    </button>
 `
-
-const popup = document.querySelector(".popup")
-popup.classList.add("popup")
-popup.innerHTML = `
-   <h2 class="title_popup">Configurações:</h2>
-   <div class="config_grid">
-      <p class="config_text">Modo claro:</p>
-      <button class="light_button" aria-label="Alternar modo escuro">
-         <ion-icon name="sunny-outline"></ion-icon>
-      </button>
-   </div>
-   <button class="fechar_popup">Fechar</button>
-`
-
-document.querySelector(".more_options_button").addEventListener("click", () => {
-   popup.showModal()
-})
-
-popup.querySelector(".fechar_popup").addEventListener("click", () => {
-   popup.close()
-})
