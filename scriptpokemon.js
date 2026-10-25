@@ -140,6 +140,9 @@ pokedex.forEach((element) => {
       <p class="card_title" style="text-transform: uppercase">${element.name}</p>
    </div>
 `
+   card.addEventListener("click", () => {
+      abrirDetalhes(element);
+   });
 
    const heartButton = card.querySelector(".hearth_button")
    const heartIcon = heartButton.querySelector("ion-icon")
@@ -149,6 +152,7 @@ pokedex.forEach((element) => {
    }
 
    heartButton.addEventListener("click", () => {
+      event.stopPropagation();
       const virouFavorito = alternarFavorito(element)
       heartIcon.setAttribute("name", virouFavorito ? "heart" : "heart-outline")
    })

@@ -38,6 +38,181 @@ header.innerHTML = `
    </nav>
 `
 
+const detalhes = document.getElementById("detalhes")
+detalhes.classList.add("detalhes")
+
+async function abrirDetalhes(pokemon) {
+   const imagem = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`;
+
+   const tipos = await Promise.all(
+      pokemon.types.map(async ({ type }) => {
+         const resposta = await fetch(
+            `https://pokeapi.co/api/v2/type/${type.name}/`
+         );
+
+         const tipoObj = await resposta.json();
+         const id = tipoObj.id;
+
+         return `
+            <span class="detalhe-tipo">
+                  <img
+                     src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-vii/lets-go-pikachu-lets-go-eevee/${id}.png"
+                     alt="${type.name}"
+                     class="icone-tipo"
+                  >
+            </span>
+         `;
+      })
+   );
+
+   const tiposHTML = tipos.join("");
+
+   detalhes.innerHTML = `
+      <div class="detalhe-cabecalho">
+
+         <div class="detalhe-principal">
+
+            <p class="detalhe-id">
+               #${String(pokemon.id).padStart(4, "0")}
+            </p>
+
+            <div class="detalhe-principal-info">
+
+               <h2 class="detalhe-nome">
+                  ${pokemon.name}
+               </h2>
+
+               ${tiposHTML}
+            </div>
+         </div>
+
+         <div class="detalhe-botoes">
+
+            <button class="hearth_button" aria-label="Favoritar pokémon">
+               <ion-icon name="heart-outline"></ion-icon>   
+            </button>
+
+            <button class="detalhe-fechar" aria-label="Fechar detalhes">
+               X
+            </button>
+
+         </div>
+      </div>
+
+      <div class="detalhe-layout">
+
+            <section class="detalhe-galeria">
+               <div class="detalhe-imagem-container">
+                  <button class="detalhe-seta">‹</button>
+
+                  <img
+                        class="detalhe-imagem"
+                        src="${imagem}"
+                        alt="${pokemon.name}"
+                  >
+
+                  <button class="detalhe-seta">›</button>
+               </div>
+
+               <div class="detalhe-miniaturas">
+                  ${[1, 2, 3, 4].map((n) => `
+                        <button class="detalhe-miniatura ${n === 1 ? "selecionada" : ""}">
+                           <img src="${imagem}" alt="Visualização ${n}">
+                        </button>
+                  `).join("")}
+               </div>
+            </section>
+
+            <section class="detalhe-informacoes">
+
+               <article class="detalhe-painel detalhe-descricao">
+                  <h3>Descrição</h3>
+                  <p>
+                        Informações sobre ${pokemon.name}.
+                        Conheça mais sobre este Pokémon.
+                  </p>
+               </article>
+
+               <div class="detalhe-grade">
+
+                  <article class="detalhe-painel">
+                        <h3>Informações Gerais</h3>
+
+                        <div class="detalhe-linha">
+                           <span>♧ Altura</span>
+                           <strong>—</strong>
+                        </div>
+
+                        <div class="detalhe-linha">
+                           <span>▣ Peso</span>
+                           <strong>—</strong>
+                        </div>
+
+                        <div class="detalhe-linha">
+                           <span>◎ Espécie</span>
+                           <strong>—</strong>
+                        </div>
+
+                        <div class="detalhe-linha">
+                           <span>♡ Gênero</span>
+                           <strong>—</strong>
+                        </div>
+
+                        <div class="detalhe-linha">
+                           <span>★ Habilidade(s)</span>
+                           <strong>—</strong>
+                        </div>
+
+                        <div class="detalhe-linha">
+                           <span>✦ Habilidade Oculta</span>
+                           <strong>—</strong>
+                        </div>
+                  </article>
+
+                  <article class="detalhe-painel">
+                        <div class="detalhe-titulo-status">
+                           <h3>Status Base</h3>
+                           <span>Total: —</span>
+                        </div>
+
+                        ${["HP", "Ataque", "Defesa", "Ataque Esp.", "Defesa Esp.", "Velocidade"].map((status) => `
+                           <div class="detalhe-status">
+                              <span>${status}</span>
+                              <strong>—</strong>
+                              <div class="detalhe-barra">
+                                    <span></span>
+                              </div>
+                           </div>
+                        `).join("")}
+                  </article>
+
+               </div>
+
+               <div class="detalhe-grade detalhe-grade-inferior">
+
+                  <article class="detalhe-painel">
+                        <h3>Evolução</h3>
+
+                        <div class="detalhe-evolucao">
+                           <div>🐣<small>Inicial</small></div>
+                           <span>→</span>
+                           <div>🐥<small>Intermediário</small></div>
+                           <span>→</span>
+                           <div>🐉<small>Final</small></div>
+                        </div>
+                  </article>
+               </div>
+            </section>
+      </div>
+   `;
+
+   detalhes.showModal();
+}
+
+fecharDetalhes.addEventListener("click", () => {
+   detalhes.close();
+});
+
 const searchbar = document.getElementById("searchbar")
 searchbar.classList.add("searchbar")
 searchbar.innerHTML = `
@@ -76,13 +251,6 @@ inputPesquisa.addEventListener("input", () => {
 
    semResultado.hidden = encontrados > 0
 })
-
-
-
-
-
-
-
 
 const footer = document.getElementById("footer")
 footer.classList.add("footer")
