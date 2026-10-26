@@ -1,0 +1,423 @@
+:root {
+   --purple-primary: #9d4edd;
+   --purple-glow: rgba(157, 78, 221, 0.4);
+   --bg-dark: #0a0412;
+   --card-bg: rgba(26, 11, 46, 0.6);
+   --border-purple: rgba(157, 78, 221, 0.3);
+   --text-main: #ffffff;
+   --text-muted: #b1a7a6;
+}
+
+body {
+   background-color: var(--bg-dark);
+   color: var(--text-main);
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   margin: 0;
+   padding: 0;
+   background-image: radial-gradient(circle at 10% 20%, rgba(74, 20, 140, 0.15) 0%, transparent 40%),
+   radial-gradient(circle at 90% 80%, rgba(157, 78, 221, 0.1) 0%, transparent 40%);
+   background-attachment: fixed;
+}
+
+
+.header-container {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding: 20px 40px;
+}
+
+.logo-container {
+   display: flex;
+   align-items: center;
+   gap: 10px;
+   font-size: 1.2rem;
+   color: var(--purple-primary);
+}
+
+.logo-icon {
+   font-size: 24px;
+   display: flex;
+   align-items: center;
+}
+
+.icon-btn {
+   background: rgba(255, 255, 255, 0.05);
+   border: 1px solid var(--border-purple);
+   color: white;
+   padding: 10px;
+   border-radius: 50%;
+   cursor: pointer;
+   font-size: 18px;
+   transition: 0.3s;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.icon-btn:hover {
+   background: var(--purple-primary);
+   box-shadow: 0 0 10px var(--purple-glow);
+}
+
+.sub-navbar {
+   display: flex;
+   justify-content: center;
+   gap: 40px;
+   padding: 10px 0;
+   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.nav-item {
+   color: var(--text-muted);
+   text-decoration: none;
+   display: flex;
+   align-items: center;
+   gap: 8px;
+   font-size: 15px;
+   transition: 0.3s;
+}
+
+.nav-item.active, .nav-item:hover {
+   color: var(--text-main);
+   text-shadow: 0 0 8px var(--purple-glow);
+}
+
+
+.profile-container {
+   max-width: 1200px;
+   margin: 30px auto;
+   padding: 0 20px;
+   display: flex;
+   flex-direction: column;
+   gap: 25px;
+}
+
+
+.profile-card {
+   background: var(--card-bg);
+   border: 1px solid var(--border-purple);
+   border-radius: 20px;
+   padding: 30px;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   backdrop-filter: blur(12px);
+   -webkit-backdrop-filter: blur(12px);
+   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.profile-main-info {
+   display: flex;
+   gap: 25px;
+   align-items: center;
+}
+
+.avatar-wrapper {
+   position: relative;
+}
+
+.avatar-circle {
+   width: 100px;
+   height: 100px;
+   border-radius: 50%;
+   background: linear-gradient(135deg, #240046, #560bad);
+   border: 2px solid var(--purple-primary);
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-size: 45px;
+   color: #e0aaff;
+   box-shadow: 0 0 15px var(--purple-glow);
+}
+
+.camera-btn {
+   position: absolute;
+   bottom: 0;
+   right: 0;
+   background: var(--purple-primary);
+   border: none;
+   color: white;
+   width: 32px;
+   height: 32px;
+   border-radius: 50%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   cursor: pointer;
+   transition: 0.3s;
+}
+
+.camera-btn:hover {
+   transform: scale(1.1);
+}
+
+.profile-details h2 {
+   margin: 0 0 4px 0;
+   font-size: 24px;
+   font-weight: 600;
+}
+
+.profile-username {
+   color: var(--text-muted);
+   font-size: 14px;
+}
+
+.profile-bio {
+   margin: 10px 0;
+   font-size: 14px;
+   color: #e2e2e2;
+}
+
+.profile-meta {
+   display: flex;
+   gap: 20px;
+   font-size: 13px;
+   color: var(--text-muted);
+}
+
+.meta-item {
+   display: flex;
+   align-items: center;
+   gap: 5px;
+}
+
+.profile-side-info {
+   display: flex;
+   flex-direction: column;
+   align-items: flex-end;
+   gap: 20px;
+   max-width: 320px;
+}
+
+.profile-quote {
+   font-style: italic;
+   font-size: 13px;
+   color: var(--text-muted);
+   text-align: right;
+   margin: 0;
+   border-left: 2px solid var(--purple-primary);
+   padding-left: 12px;
+}
+
+.edit-profile-btn {
+   background: rgba(157, 78, 221, 0.15);
+   border: 1px solid var(--purple-primary);
+   color: white;
+   padding: 8px 18px;
+   border-radius: 20px;
+   font-size: 13px;
+   cursor: pointer;
+   display: flex;
+   align-items: center;
+   gap: 6px;
+   transition: 0.3s;
+}
+
+.edit-profile-btn:hover {
+   background: var(--purple-primary);
+   box-shadow: 0 0 12px var(--purple-glow);
+}
+
+/* Grid de Estatísticas */
+.stats-grid {
+   display: grid;
+   grid-template-columns: repeat(3, 1fr);
+   gap: 20px;
+}
+
+.stat-card {
+   background: var(--card-bg);
+   border: 1px solid var(--border-purple);
+   border-radius: 16px;
+   padding: 20px;
+   display: flex;
+   align-items: center;
+   gap: 20px;
+   backdrop-filter: blur(10px);
+}
+
+.stat-icon-wrapper {
+   width: 48px;
+   height: 48px;
+   border-radius: 12px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-size: 22px;
+}
+
+.purple-glow { background: rgba(157, 78, 221, 0.2); color: #c77dff; box-shadow: 0 0 10px rgba(157, 78, 221, 0.3); }
+.pink-glow { background: rgba(255, 77, 109, 0.2); color: #ff4d6d; box-shadow: 0 0 10px rgba(255, 77, 109, 0.3); }
+.blue-glow { background: rgba(72, 202, 228, 0.2); color: #48cae4; box-shadow: 0 0 10px rgba(72, 202, 228, 0.3); }
+
+.stat-info {
+   display: flex;
+   flex-direction: column;
+}
+
+.stat-number {
+   font-size: 22px;
+   font-weight: bold;
+}
+
+.stat-label {
+   font-size: 13px;
+   color: var(--text-muted);
+}
+
+/* Seção de Favoritos */
+.favorites-section {
+   background: var(--card-bg);
+   border: 1px solid var(--border-purple);
+   border-radius: 20px;
+   padding: 25px 30px;
+   backdrop-filter: blur(12px);
+}
+
+.section-header {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin-bottom: 20px;
+}
+
+.section-header h2 {
+   font-size: 18px;
+   margin: 0;
+}
+
+.see-all-link {
+   color: var(--text-muted);
+   text-decoration: none;
+   font-size: 14px;
+   display: flex;
+   align-items: center;
+   gap: 5px;
+   transition: 0.3s;
+}
+
+.see-all-link:hover {
+   color: var(--text-main);
+}
+
+.pokemon-grid {
+   display: grid;
+   grid-template-columns: repeat(6, 1fr);
+   gap: 15px;
+}
+
+.pokemon-card {
+   background: rgba(18, 5, 34, 0.7);
+   border: 1px solid rgba(157, 78, 221, 0.2);
+   border-radius: 14px;
+   padding: 12px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   transition: 0.3s;
+}
+
+.pokemon-card:hover {
+   transform: translateY(-4px);
+   border-color: var(--purple-primary);
+   box-shadow: 0 6px 16px var(--purple-glow);
+}
+
+.pokemon-card-top {
+   width: 100%;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+
+.poke-id {
+   font-size: 11px;
+   color: var(--text-muted);
+}
+
+.heart-btn {
+   background: none;
+   border: none;
+   color: #ff4d6d;
+   cursor: pointer;
+   font-size: 14px;
+   display: flex;
+}
+
+.pokemon-img-box {
+   width: 80px;
+   height: 80px;
+   margin: 10px 0;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.pokemon-img-box img {
+   max-width: 100%;
+   max-height: 100%;
+   object-fit: contain;
+   filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4));
+}
+
+.poke-name {
+   font-size: 13px;
+   font-weight: 500;
+}
+
+
+#footer {
+   text-align: center;
+   padding: 30px;
+   color: var(--text-muted);
+   font-size: 13px;
+   border-top: 1px solid rgba(255, 255, 255, 0.05);
+   margin-top: 40px;
+}
+
+.footer-content {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 5px;
+}
+
+.footer-logo {
+   display: flex;
+   align-items: center;
+   gap: 6px;
+   color: var(--purple-primary);
+   font-weight: bold;
+}
+
+
+@media (max-width: 968px) {
+   .profile-card {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20px;
+   }
+   .profile-side-info {
+      align-items: flex-start;
+      max-width: 100%;
+   }
+   .profile-quote {
+      text-align: left;
+      border-left: 2px solid var(--purple-primary);
+      padding-left: 12px;
+      border-right: none;
+   }
+   .stats-grid {
+      grid-template-columns: 1fr;
+   }
+   .pokemon-grid {
+      grid-template-columns: repeat(3, 1fr);
+   }
+}
+
+@media (max-width: 600px) {
+   .pokemon-grid {
+      grid-template-columns: repeat(2, 1fr);
+   }
+}
