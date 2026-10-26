@@ -1,5 +1,13 @@
 console.log(`JS conectado!\n`)
 
+const footer = document.getElementById("footer")
+footer.classList.add("footer")
+footer.innerHTML = `
+   <button class="github_button" onclick="window.open('https://github.com/Peressjj/pokedex', '_blank', 'noopener,noreferrer')">
+      <ion-icon name="logo-github"></ion-icon>
+   </button>
+`
+
 const raiz = document.currentScript.src.replace(/script\.js$/, "");
 
 function botao() {
@@ -274,11 +282,3 @@ inputPesquisa.addEventListener("input", () => {
 
    semResultado.hidden = encontrados > 0
 })
-
-const footer = document.getElementById("footer")
-footer.classList.add("footer")
-footer.innerHTML = `
-   <button class="github_button" onclick="window.open('https://github.com/Peressjj/pokedex', '_blank', 'noopener,noreferrer')">
-      <ion-icon name="logo-github"></ion-icon>
-   </button>
-`
