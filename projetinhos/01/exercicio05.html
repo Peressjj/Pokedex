@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resident Evil 4</title>
+
+    <style>
+        .logo {
+            width: 100px;
+        }
+
+        .formulario {
+            width: 40%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+    </style>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+    <img src="resident_evil_4.jpg" alt="Logo Resident Evil 4" class="logo">
+
+    <h1>Ashley Linda</h1>
+
+    <nav>
+        <a href="exercicio05.html">Home</a>
+        <a href="sobre.html">Sobre</a>
+        <a href="contato.html">Contato</a>
+    </nav>
+</header>
+
+<main>
+    <h1>Resident Evil 4</h1>
+
+    <form class="formulario">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" required placeholder="Digite seu nome">
+
+        <label for="idade">Idade:</label>
+        <input type="number" id="idade" required placeholder="Digite sua idade">
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" required placeholder="Digite seu email">
+
+        <label for="date">Data e Hora:</label>
+        <input type="datetime-local" id="date" required placeholder="Digite seu curso">
+
+        <select name="curse" id="curse">
+            <option value="html">HTML</option>
+            <option value="css">CSS</option>
+            <option value="java">JAVA</option>
+            <option value="php">PHP</option>
+        </select>
+
+        <button type="submit">Enviar</button>
+    </form>
+</main>
+</body>
+</html>
