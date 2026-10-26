@@ -4,7 +4,7 @@
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Perfil - Pokédex</title>
+   <title>Perfil</title>
    <link rel="stylesheet" href="../../style.css">
    <link rel="stylesheet" href="perfil.css">
 </head>
@@ -16,169 +16,157 @@
    <dialog class="popup"></dialog>
 
    <main id="main">
-      <div class="profile-container">
 
-         <section class="profile-card">
-            <div class="profile-main-info">
-               <div class="avatar-wrapper">
-                  <div class="avatar-circle">
-                     <ion-icon name="logo-octocat" class="avatar-img-placeholder"></ion-icon>
-                  </div>
-                  <button class="camera-btn" title="Alterar foto">
-                     <ion-icon name="camera-outline"></ion-icon>
-                  </button>
+      <div class="perfil_card">
+         <div class="perfil_info">
+            <div class="avatar">
+               <div class="avatar_circulo">
+                  <ion-icon name="logo-octocat"></ion-icon>
                </div>
-               <div class="profile-details">
-                  <h2 class="profile-name">João Vitor</h2>
-                  <span class="profile-username">@jvperes</span>
-                  <p class="profile-bio">Explorando o mundo Pokémon, um dia de cada vez.</p>
-                  <div class="profile-meta">
-                     <span class="meta-item"><ion-icon name="location-outline"></ion-icon> Brasil</span>
-                     <span class="meta-item"><ion-icon name="calendar-outline"></ion-icon> Membro desde ago. 2025</span>
-                  </div>
-               </div>
-            </div>
-
-            <div class="profile-side-info">
-               <blockquote class="profile-quote">
-                  "Pokémon não são apenas criaturas, mas histórias que nos acompanham."
-               </blockquote>
-               <button class="edit-profile-btn">
-                  <ion-icon name="create-outline"></ion-icon> Editar perfil
+               <button class="botao_camera" title="Alterar foto">
+                  <ion-icon name="camera-outline"></ion-icon>
                </button>
             </div>
-         </section>
 
-
-         <section class="stats-grid">
-            <div class="stat-card">
-               <div class="stat-icon-wrapper purple-glow">
-                  <ion-icon name="radio-button-on"></ion-icon>
-               </div>
-               <div class="stat-info">
-                  <span class="stat-number">124</span>
-                  <span class="stat-label">Pokémon vistos</span>
+            <div class="perfil_detalhes">
+               <h2 class="nome_perfil">João Vitor</h2>
+               <span class="usuario_perfil">@jvperes</span>
+               <p class="bio_perfil">Explorando o mundo Pokémon, um dia de cada vez.</p>
+               <div class="meta_perfil">
+                  <span class="meta_item"><ion-icon name="location-outline"></ion-icon> Brasil</span>
+                  <span class="meta_item"><ion-icon name="calendar-outline"></ion-icon> Membro desde ago. 2025</span>
                </div>
             </div>
+         </div>
 
-            <div class="stat-card">
-               <div class="stat-icon-wrapper pink-glow">
-                  <ion-icon name="heart"></ion-icon>
-               </div>
-               <div class="stat-info">
-                  <span class="stat-number">8</span>
-                  <span class="stat-label">Favoritos</span>
-               </div>
-            </div>
-
-            <div class="stat-card">
-               <div class="stat-icon-wrapper blue-glow">
-                  <ion-icon name="git-compare-outline"></ion-icon>
-               </div>
-               <div class="stat-info">
-                  <span class="stat-number">3</span>
-                  <span class="stat-label">Comparações</span>
-               </div>
-            </div>
-         </section>
-
-         <section class="favorites-section">
-            <div class="section-header">
-               <h2>Meus Pokémon Favoritos</h2>
-               <a href="#" class="see-all-link">Ver todos <ion-icon name="arrow-forward-outline"></ion-icon></a>
-            </div>
-
-            <div class="pokemon-grid">
-
-               <div class="pokemon-card">
-                  <div class="pokemon-card-top">
-                     <span class="poke-id">Nº 001</span>
-                     <button class="heart-btn active"><ion-icon name="heart"></ion-icon></button>
-                  </div>
-                  <div class="pokemon-img-box">
-                     <img
-                        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"
-                        alt="Bulbasaur">
-                  </div>
-                  <span class="poke-name">Bulbasaur</span>
-               </div>
-
-               <div class="pokemon-card">
-                  <div class="pokemon-card-top">
-                     <span class="poke-id">Nº 004</span>
-                     <button class="heart-btn active"><ion-icon name="heart"></ion-icon></button>
-                  </div>
-                  <div class="pokemon-img-box">
-                     <img
-                        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png"
-                        alt="Charmander">
-                  </div>
-                  <span class="poke-name">Charmander</span>
-               </div>
-
-               <div class="pokemon-card">
-                  <div class="pokemon-card-top">
-                     <span class="poke-id">Nº 007</span>
-                     <button class="heart-btn active"><ion-icon name="heart"></ion-icon></button>
-                  </div>
-                  <div class="pokemon-img-box">
-                     <img
-                        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png"
-                        alt="Squirtle">
-                  </div>
-                  <span class="poke-name">Squirtle</span>
-               </div>
-
-               <div class="pokemon-card">
-                  <div class="pokemon-card-top">
-                     <span class="poke-id">Nº 025</span>
-                     <button class="heart-btn active"><ion-icon name="heart"></ion-icon></button>
-                  </div>
-                  <div class="pokemon-img-box">
-                     <img
-                        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png"
-                        alt="Pikachu">
-                  </div>
-                  <span class="poke-name">Pikachu</span>
-               </div>
-
-               <div class="pokemon-card">
-                  <div class="pokemon-card-top">
-                     <span class="poke-id">Nº 094</span>
-                     <button class="heart-btn active"><ion-icon name="heart"></ion-icon></button>
-                  </div>
-                  <div class="pokemon-img-box">
-                     <img
-                        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/94.png"
-                        alt="Gengar">
-                  </div>
-                  <span class="poke-name">Gengar</span>
-               </div>
-
-               <div class="pokemon-card">
-                  <div class="pokemon-card-top">
-                     <span class="poke-id">Nº 143</span>
-                     <button class="heart-btn active"><ion-icon name="heart"></ion-icon></button>
-                  </div>
-                  <div class="pokemon-img-box">
-                     <img
-                        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/143.png"
-                        alt="Snorlax">
-                  </div>
-                  <span class="poke-name">Snorlax</span>
-               </div>
-
-            </div>
-         </section>
-
+         <div class="perfil_lateral">
+            <blockquote class="citacao">
+               "Pokémon não são apenas criaturas, mas histórias que nos acompanham."
+            </blockquote>
+            <button class="botao_editar">
+               <ion-icon name="create-outline"></ion-icon> Editar perfil
+            </button>
+         </div>
       </div>
+
+
+      <div class="grid_triplo">
+         <div class="quadrado">
+            <div class="icone_stat roxo">
+               <ion-icon name="radio-button-on"></ion-icon>
+            </div>
+            <div class="info_stat">
+               <span class="numero_stat">124</span>
+               <span class="texto_stat">Pokémon vistos</span>
+            </div>
+         </div>
+
+         <div class="quadrado">
+            <div class="icone_stat rosa">
+               <ion-icon name="heart"></ion-icon>
+            </div>
+            <div class="info_stat">
+               <span class="numero_stat">8</span>
+               <span class="texto_stat">Favoritos</span>
+            </div>
+         </div>
+
+         <div class="quadrado">
+            <div class="icone_stat azul">
+               <ion-icon name="git-compare-outline"></ion-icon>
+            </div>
+            <div class="info_stat">
+               <span class="numero_stat">3</span>
+               <span class="texto_stat">Comparações</span>
+            </div>
+         </div>
+      </div>
+
+
+      <div class="favoritos">
+         <div class="favoritos_header">
+            <h2 class="title_favoritos">Meus Pokémon favoritos</h2>
+            <a href="#" class="ver_todos">Ver todos <ion-icon name="arrow-forward-outline"></ion-icon></a>
+         </div>
+
+         <div class="grid_pokemons">
+
+            <div class="pokemon_card">
+               <div class="pokemon_topo">
+                  <span class="pokemon_id">Nº 001</span>
+                  <button class="botao_coracao"><ion-icon name="heart"></ion-icon></button>
+               </div>
+               <img
+                  src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"
+                  alt="Bulbasaur">
+               <span class="pokemon_nome">Bulbasaur</span>
+            </div>
+
+            <div class="pokemon_card">
+               <div class="pokemon_topo">
+                  <span class="pokemon_id">Nº 004</span>
+                  <button class="botao_coracao"><ion-icon name="heart"></ion-icon></button>
+               </div>
+               <img
+                  src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png"
+                  alt="Charmander">
+               <span class="pokemon_nome">Charmander</span>
+            </div>
+
+            <div class="pokemon_card">
+               <div class="pokemon_topo">
+                  <span class="pokemon_id">Nº 007</span>
+                  <button class="botao_coracao"><ion-icon name="heart"></ion-icon></button>
+               </div>
+               <img
+                  src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png"
+                  alt="Squirtle">
+               <span class="pokemon_nome">Squirtle</span>
+            </div>
+
+            <div class="pokemon_card">
+               <div class="pokemon_topo">
+                  <span class="pokemon_id">Nº 025</span>
+                  <button class="botao_coracao"><ion-icon name="heart"></ion-icon></button>
+               </div>
+               <img
+                  src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png"
+                  alt="Pikachu">
+               <span class="pokemon_nome">Pikachu</span>
+            </div>
+
+            <div class="pokemon_card">
+               <div class="pokemon_topo">
+                  <span class="pokemon_id">Nº 094</span>
+                  <button class="botao_coracao"><ion-icon name="heart"></ion-icon></button>
+               </div>
+               <img
+                  src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/94.png"
+                  alt="Gengar">
+               <span class="pokemon_nome">Gengar</span>
+            </div>
+
+            <div class="pokemon_card">
+               <div class="pokemon_topo">
+                  <span class="pokemon_id">Nº 143</span>
+                  <button class="botao_coracao"><ion-icon name="heart"></ion-icon></button>
+               </div>
+               <img
+                  src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/143.png"
+                  alt="Snorlax">
+               <span class="pokemon_nome">Snorlax</span>
+            </div>
+
+         </div>
+      </div>
+
    </main>
 
    <footer id="footer"></footer>
 
    <script type="module" src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"></script>
    <script nomodule src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"></script>
-   
+
    <script src="../../script.js"></script>
 </body>
 
