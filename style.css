@@ -257,7 +257,18 @@ main {
    transition: 0.5s;
 }
 
+.barra_busca {
+   display: grid;
+   grid-template-columns: minmax(0, 1fr) 50% minmax(0, 1fr);
+   gap: 12px;
+   width: 100%;
+   position: sticky;
+   top: 135px;
+   z-index: 10;
+}
+
 #searchbar {
+   grid-column: 2;
    display: flex;
    border: solid 3px;
    border-color: var(--purple);
@@ -266,14 +277,9 @@ main {
    background-color: white;
    border-radius: 30px;
    padding: 2px 10px;
-   width: 50%;
    justify-content: space-between;
    align-items: center;
    cursor: text;
-   position: sticky;
-   top: 135px;
-   margin: 0 auto; 
-   z-index: 10;
    transition: 0.3s;
 }
 
@@ -324,6 +330,24 @@ main {
    font-size: 22px;
    display: inline-block;
    margin: 0;
+}
+
+#filter {
+   background-color: var(--glass);
+   border: solid var(--purple) 1px;
+   border-radius: 10px;
+   padding: 10px;
+   color: white;
+   font-family: cursive;
+   backdrop-filter: blur(10px);
+   font-size: 15px;
+   grid-column: 3;
+   justify-self: start;
+   transition: 0.3s;
+}
+
+#filter:hover {
+   scale: 1.03;
 }
 
 #section {

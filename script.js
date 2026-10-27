@@ -10,12 +10,7 @@ footer.innerHTML = `
 
 const raiz = document.currentScript.src.replace(/script\.js$/, "");
 
-function botao() {
-   alert("Botao")
-}
-
 const header = document.getElementById("header")
-
 if (header) {
    header.classList.add("header")
    header.innerHTML = `
