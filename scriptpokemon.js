@@ -60,14 +60,16 @@ function criarCard(element) {
    const heartButton = card.querySelector(".hearth_button")
    const heartIcon = heartButton.querySelector("ion-icon")
 
-   if (estaFavoritado(element.id)) {
-      heartIcon.setAttribute("name", "heart")
+   function atualizarCoracao(favoritado) {
+      heartIcon.setAttribute("name", favoritado ? "heart" : "heart-outline")
+      heartButton.classList.toggle("favoritado", favoritado)
    }
+
+   atualizarCoracao(estaFavoritado(element.id))
 
    heartButton.addEventListener("click", (event) => {
       event.stopPropagation()
-      const virouFavorito = alternarFavorito(element)
-      heartIcon.setAttribute("name", virouFavorito ? "heart" : "heart-outline")
+      atualizarCoracao(alternarFavorito(element))
    })
 
    section.appendChild(card)
