@@ -9,18 +9,20 @@ html body {
 }
 
 :root {
-   --light-bg: url(Backgrounds/Background_Pokedex_Paisagem.jpg);
-   --dark-bg: url(Backgrounds/Background_Pokedex_roxo.png);
+   --light-backgrond: url(../Pokedex/assets/Backgrounds/Background_Pokedex_Paisagem.jpg);
+   --dark-background: url(../Pokedex/assets/Backgrounds/Background_Pokedex_roxo.png);
+
    --bg-dark: #0b0618;
    --purple: #9333ea;
    --purple-soft: #c4b5fd;
+
    --glass: rgba(20, 10, 40, 0.55);
    --border-glow: 0 0 12px rgba(147, 51, 234, 0.5);
 }
 
 body {
    margin: 0;
-   background-image: url(./assets/Backgrounds/Background_Pokedex_roxo.png);
+   background-image: var(--dark-background);
    background-repeat: repeat-y;
    background-position: center;
    background-attachment: fixed;
@@ -595,7 +597,7 @@ footer {
       radial-gradient(ellipse at 15% 35%, #35105b66, transparent 45%),
       linear-gradient(135deg, #100820, #0a0617);
 
-   border: 1px solid #8d26e8;
+   border: 1px solid var(--purple);
    border-radius: 16px;
 
    box-shadow:
@@ -699,7 +701,7 @@ footer {
    line-height: 1;
 
    background: #140b2b !important;
-   border: 1px solid #6730a2 !important;
+   border: 1px solid var(--purple) !important;
    border-radius: 10px !important;
 }
 

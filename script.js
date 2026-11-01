@@ -50,9 +50,9 @@ if (popup) {
    popup.innerHTML = `
       <h2 class="title_popup">Configurações:</h2>
       <div class="config_grid">
-         <p class="config_text">Modo claro:</p>
+         <p class="config_text">Alterar tema:</p>
          <button class="light_button" aria-label="Alternar modo escuro">
-            <ion-icon name="sunny-outline"></ion-icon>
+            <ion-icon name="moon-outline"></ion-icon>
          </button>
       </div>
       <button class="fechar_popup">Fechar</button>
@@ -277,3 +277,13 @@ inputPesquisa.addEventListener("input", () => {
 
    semResultado.hidden = encontrados > 0
 })
+
+const theme = document.getElementsByClassName(".light_button");
+
+theme.addEventListener("click", alterar_tema());
+
+function alterar_tema() {
+   const borda = document.documentElement.style.setProperty("--purple", "yellow");
+   
+   document.body.style.backgroundImage = "url(../Pokedex/assets/Backgrounds/Background_Pokedex_Paisagem.jpg)";
+}
