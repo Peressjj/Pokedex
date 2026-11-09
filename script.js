@@ -8,7 +8,7 @@ footer.innerHTML = `
    </button>
 `
 
-const raiz = document.currentScript.src.replace(/script\.js$/, "");
+const raiz = document.currentScript.src.replace(/script\.js$/, "")
 
 const header = document.getElementById("header")
 if (header) {
@@ -52,32 +52,58 @@ if (popup) {
       <div class="config_grid">
          <p class="config_text">Alterar tema:</p>
          <button class="light_button" aria-label="Alternar modo escuro">
-            <ion-icon name="moon-outline"></ion-icon>
+            <ion-icon name="sunny-outline"></ion-icon>
          </button>
       </div>
       <button class="fechar_popup">Fechar</button>
    `
-   document.querySelector(".more_options_button")
+
+   document
+      .querySelector(".more_options_button")
       ?.addEventListener("click", () => popup.showModal())
 
-   popup.querySelector(".fechar_popup")
+   popup
+      .querySelector(".fechar_popup")
       ?.addEventListener("click", () => popup.close())
+
+   popup.querySelector(".light_button").addEventListener("click", alterar_tema)
 }
+
+function aplicar_tema(amarelo) {
+   document.body.classList.toggle("tema_amarelo", amarelo)
+
+   document
+      .querySelector(".light_button ion-icon")
+      ?.setAttribute("name", amarelo ? "moon-outline" : "sunny-outline")
+}
+
+function alterar_tema() {
+   const amarelo = !document.body.classList.contains("tema_amarelo")
+
+   localStorage.setItem("tema", amarelo ? "amarelo" : "roxo")
+   aplicar_tema(amarelo)
+}
+
+aplicar_tema(localStorage.getItem("tema") === "amarelo")
+
+
+
+
 
 const detalhes = document.getElementById("detalhes")
 detalhes.classList.add("detalhes")
 
 async function abrirDetalhes(pokemon) {
-   const imagem = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`;
+   const imagem = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`
 
    const tipos = await Promise.all(
       pokemon.types.map(async ({ type }) => {
          const resposta = await fetch(
-            `https://pokeapi.co/api/v2/type/${type.name}/`
-         );
+            `https://pokeapi.co/api/v2/type/${type.name}/`,
+         )
 
-         const tipoObj = await resposta.json();
-         const id = tipoObj.id;
+         const tipoObj = await resposta.json()
+         const id = tipoObj.id
 
          return `
             <span class="detalhe-tipo">
@@ -87,11 +113,11 @@ async function abrirDetalhes(pokemon) {
                      class="icone-tipo"
                   >
             </span>
-         `;
-      })
-   );
+         `
+      }),
+   )
 
-   const tiposHTML = tipos.join("");
+   const tiposHTML = tipos.join("")
 
    detalhes.innerHTML = `
       <div class="detalhe-cabecalho">
@@ -141,11 +167,15 @@ async function abrirDetalhes(pokemon) {
                </div>
 
                <div class="detalhe-miniaturas">
-                  ${[1, 2, 3, 4].map((n) => `
+                  ${[1, 2, 3, 4]
+                     .map(
+                        (n) => `
                         <button class="detalhe-miniatura ${n === 1 ? "selecionada" : ""}">
                            <img src="${imagem}" alt="Visualização ${n}">
                         </button>
-                  `).join("")}
+                  `,
+                     )
+                     .join("")}
                </div>
             </section>
 
@@ -201,7 +231,16 @@ async function abrirDetalhes(pokemon) {
                            <span>Total: —</span>
                         </div>
 
-                        ${["HP", "Ataque", "Defesa", "Ataque Esp.", "Defesa Esp.", "Velocidade"].map((status) => `
+                        ${[
+                           "HP",
+                           "Ataque",
+                           "Defesa",
+                           "Ataque Esp.",
+                           "Defesa Esp.",
+                           "Velocidade",
+                        ]
+                           .map(
+                              (status) => `
                            <div class="detalhe-status">
                               <span>${status}</span>
                               <strong>—</strong>
@@ -209,7 +248,9 @@ async function abrirDetalhes(pokemon) {
                                     <span></span>
                               </div>
                            </div>
-                        `).join("")}
+                        `,
+                           )
+                           .join("")}
                   </article>
 
                </div>
@@ -230,13 +271,13 @@ async function abrirDetalhes(pokemon) {
                </div>
             </section>
       </div>
-   `;
+   `
 
    detalhes.querySelector(".detalhe-fechar").addEventListener("click", () => {
-      detalhes.close();
-   });
+      detalhes.close()
+   })
 
-   detalhes.showModal();
+   detalhes.showModal()
 }
 
 const searchbar = document.getElementById("searchbar")
@@ -278,12 +319,3 @@ inputPesquisa.addEventListener("input", () => {
    semResultado.hidden = encontrados > 0
 })
 
-const theme = document.getElementsByClassName(".light_button");
-
-theme.addEventListener("click", alterar_tema());
-
-function alterar_tema() {
-   const borda = document.documentElement.style.setProperty("--purple", "yellow");
-   
-   document.body.style.backgroundImage = "url(../Pokedex/assets/Backgrounds/Background_Pokedex_Paisagem.jpg)";
-}
