@@ -86,14 +86,12 @@ function alterar_tema() {
 
 aplicar_tema(localStorage.getItem("tema") === "amarelo")
 
-
-
-
-
 const detalhes = document.getElementById("detalhes")
 detalhes.classList.add("detalhes")
 
 async function abrirDetalhes(pokemon) {
+   registrarVisto(pokemon.id)
+
    const imagem = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`
 
    const tipos = await Promise.all(
@@ -319,3 +317,11 @@ inputPesquisa.addEventListener("input", () => {
    semResultado.hidden = encontrados > 0
 })
 
+function registrarVisto(id) {
+   const vistos = JSON.parse(localStorage.getItem("vistos")) || []
+
+   if (!vistos.includes(id)) {
+      vistos.push(id)
+      localStorage.setItem("vistos", JSON.stringify(vistos))
+   }
+}

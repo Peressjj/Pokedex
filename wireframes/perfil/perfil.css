@@ -5,8 +5,6 @@
 
 #main {
    gap: 30px;
-   color: white;
-   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 .perfil_card,
 .grid_triplo,
@@ -21,11 +19,13 @@
 }
 
 .perfil_card {
+   color: white;
    display: flex;
    justify-content: space-between;
    align-items: center;
    flex-wrap: wrap;
    gap: 20px;
+   backdrop-filter: blur(5px);
 }
 
 .perfil_info {
@@ -46,7 +46,7 @@
    width: 100px;
    height: 100px;
    border-radius: 50%;
-   background: linear-gradient(135deg, #240046, #560bad);
+   background-color: var(--glass);
    border: solid var(--purple) 2px;
    box-shadow: var(--border-glow);
    font-size: 45px;
@@ -62,8 +62,8 @@
    justify-content: center;
    width: 32px;
    height: 32px;
-   background-color: var(--purple);
-   border: none;
+   background-color: black;
+   border: solid var(--purple) 2px;
    border-radius: 50%;
    color: white;
    cursor: pointer;
@@ -150,6 +150,8 @@
    display: grid;
    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
    gap: 16px;
+   backdrop-filter: blur(5px);
+   color: white;
 }
 
 .quadrado {
@@ -215,12 +217,14 @@
    display: flex;
    flex-direction: column;
    gap: 20px;
+   backdrop-filter: blur(3px);
 }
 
 .favoritos_header {
    display: flex;
    justify-content: space-between;
    align-items: center;
+   color: white;
 }
 
 .title_favoritos {
@@ -248,52 +252,8 @@
    gap: 15px;
 }
 
-.pokemon_card {
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   padding: 12px;
-   background-color: var(--glass);
-   border: solid var(--purple) 1.5px;
-   border-radius: 10px;
-   transition: 0.3s;
-}
-
-.pokemon_card:hover {
-   scale: 1.05;
-   box-shadow: var(--border-glow);
-}
-
-.pokemon_card img {
-   width: 80px;
-   height: 80px;
-   margin: 10px 0;
-   object-fit: contain;
-   filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.4));
-}
-
-.pokemon_topo {
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
-   width: 100%;
-}
-
-.pokemon_id {
-   font-size: 11px;
+.sem_favoritos {
+   grid-column: 1 / -1;
    color: var(--purple-soft);
-}
-
-.botao_coracao {
-   display: flex;
-   background: none;
-   border: none;
-   color: var(--rosa);
-   font-size: 14px;
-   cursor: pointer;
-}
-
-.pokemon_nome {
-   font-size: 13px;
-   font-weight: 500;
+   text-align: center;
 }
