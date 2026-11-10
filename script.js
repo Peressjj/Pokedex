@@ -89,193 +89,258 @@ aplicar_tema(localStorage.getItem("tema") === "amarelo")
 const detalhes = document.getElementById("detalhes")
 detalhes.classList.add("detalhes")
 
-async function abrirDetalhes(pokemon) {
-   registrarVisto(pokemon.id)
+async function buscarJSON(url) {
+   const resposta = await fetch(url)
+   if (!resposta.ok) throw new Error(`Erro ${resposta.status} em ${url}`)
+   return resposta.json()
+}
 
-   const imagem = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`
+const idDaUrl = (url) => Number(url.split("/").filter(Boolean).pop())
+const formatar = (texto) => texto.replace(/-/g, " ")
 
-   const tipos = await Promise.all(
-      pokemon.types.map(async ({ type }) => {
-         const resposta = await fetch(
-            `https://pokeapi.co/api/v2/type/${type.name}/`,
-         )
+const cacheDetalhes = {}
 
-         const tipoObj = await resposta.json()
-         const id = tipoObj.id
+function extrairEvolucao(chain) {
+   const etapas = []
+   let nivel = [chain]
 
-         return `
-            <span class="detalhe-tipo">
-                  <img
-                     src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-vii/lets-go-pikachu-lets-go-eevee/${id}.png"
-                     alt="${type.name}"
-                     class="icone-tipo"
-                  >
-            </span>
-         `
-      }),
-   )
+   while (nivel.length > 0) {
+      etapas.push(
+         nivel.map((no) => ({
+            nome: no.species.name,
+            id: idDaUrl(no.species.url),
+         })),
+      )
+      nivel = nivel.flatMap((no) => no.evolves_to)
+   }
 
-   const tiposHTML = tipos.join("")
+   return etapas
+}
 
-   detalhes.innerHTML = `
+function formatarGenero(taxa) {
+   if (taxa === -1) return "Sem gênero"
+
+   const femea = (taxa / 8) * 100
+   const macho = 100 - femea
+   return `♂ ${macho.toLocaleString("pt-BR")}% · ♀ ${femea.toLocaleString("pt-BR")}%`
+}
+
+async function buscarDetalhes(id) {
+   if (cacheDetalhes[id]) return cacheDetalhes[id]
+
+   const [pokemon, especie] = await Promise.all([
+      buscarJSON(`https://pokeapi.co/api/v2/pokemon/${id}`),
+      buscarJSON(`https://pokeapi.co/api/v2/pokemon-species/${id}`),
+   ])
+
+   const evolucao = await buscarJSON(especie.evolution_chain.url)
+
+   const emIngles = (lista) => lista.find((item) => item.language.name === "en")
+
+   const arte = pokemon.sprites.other["official-artwork"]
+
+   const dados = {
+      id: pokemon.id,
+      nome: pokemon.name,
+      tipos: pokemon.types.map(({ type }) => ({
+         nome: type.name,
+         id: idDaUrl(type.url),
+      })),
+      imagens: [
+         arte.front_default,
+         arte.front_shiny,
+         pokemon.sprites.front_default,
+         pokemon.sprites.back_default,
+      ].filter(Boolean),
+      descricao:
+         emIngles(especie.flavor_text_entries)?.flavor_text.replace(
+            /[\n\f]/g,
+            " ",
+         ) ?? "—",
+      especie: emIngles(especie.genera)?.genus ?? "—",
+      genero: formatarGenero(especie.gender_rate),
+      altura: pokemon.height / 10,
+      peso: pokemon.weight / 10,
+      habilidades: pokemon.abilities
+         .filter((a) => !a.is_hidden)
+         .map((a) => formatar(a.ability.name)),
+      oculta: pokemon.abilities
+         .filter((a) => a.is_hidden)
+         .map((a) => formatar(a.ability.name)),
+      stats: pokemon.stats.map((s) => s.base_stat),
+      total: pokemon.stats.reduce((soma, s) => soma + s.base_stat, 0),
+      evolucao: extrairEvolucao(evolucao.chain),
+   }
+
+   cacheDetalhes[id] = dados
+   return dados
+}
+
+function montarDetalhes(d) {
+   const tiposHTML = d.tipos
+      .map(
+         (tipo) => `
+         <span class="detalhe-tipo">
+            <img
+               src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-vii/lets-go-pikachu-lets-go-eevee/${tipo.id}.png"
+               alt="${tipo.nome}"
+               class="icone-tipo"
+            >
+         </span>`,
+      )
+      .join("")
+
+   const miniaturasHTML = d.imagens
+      .map(
+         (src, i) => `
+         <button class="detalhe-miniatura ${i === 0 ? "selecionada" : ""}" data-src="${src}">
+            <img src="${src}" alt="Visualização ${i + 1}">
+         </button>`,
+      )
+      .join("")
+
+   const nomesStatus = [
+      "HP",
+      "Ataque",
+      "Defesa",
+      "Ataque Esp.",
+      "Defesa Esp.",
+      "Velocidade",
+   ]
+
+   const statusHTML = d.stats
+      .map(
+         (valor, i) => `
+         <div class="detalhe-status">
+            <span>${nomesStatus[i]}</span>
+            <strong>${valor}</strong>
+            <div class="detalhe-barra">
+               <span style="width: ${Math.min(100, (valor / 255) * 100)}%"></span>
+            </div>
+         </div>`,
+      )
+      .join("")
+
+   const naoEvolui = d.evolucao.length === 1 && d.evolucao[0].length === 1
+
+   const evolucaoHTML = naoEvolui
+      ? `<p>Este Pokémon não evolui.</p>`
+      : d.evolucao
+           .map(
+              (etapa) => `
+              <div class="detalhe-etapa">
+                 ${etapa
+                    .map(
+                       (p) => `
+                       <div>
+                          <img
+                             src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${p.id}.png"
+                             alt="${p.nome}"
+                          >
+                          <small>${formatar(p.nome)}</small>
+                       </div>`,
+                    )
+                    .join("")}
+              </div>`,
+           )
+           .join(`<span>→</span>`)
+
+   return `
       <div class="detalhe-cabecalho">
-
          <div class="detalhe-principal">
-
-            <p class="detalhe-id">
-               #${String(pokemon.id).padStart(4, "0")}
-            </p>
-
+            <p class="detalhe-id">#${String(d.id).padStart(4, "0")}</p>
             <div class="detalhe-principal-info">
-
-               <h2 class="detalhe-nome">
-                  ${pokemon.name}
-               </h2>
-
+               <h2 class="detalhe-nome">${d.nome}</h2>
                ${tiposHTML}
             </div>
          </div>
 
          <div class="detalhe-botoes">
-
             <button class="hearth_button" aria-label="Favoritar pokémon">
-               <ion-icon name="heart-outline"></ion-icon>   
+               <ion-icon name="heart-outline"></ion-icon>
             </button>
-
-            <button class="detalhe-fechar" aria-label="Fechar detalhes">
-               X
-            </button>
-
+            <button class="detalhe-fechar" aria-label="Fechar detalhes">X</button>
          </div>
       </div>
 
       <div class="detalhe-layout">
+         <section class="detalhe-galeria">
+            <div class="detalhe-imagem-container">
+               <button class="detalhe-seta">‹</button>
+               <img class="detalhe-imagem" src="${d.imagens[0]}" alt="${d.nome}">
+               <button class="detalhe-seta">›</button>
+            </div>
+            <div class="detalhe-miniaturas">${miniaturasHTML}</div>
+         </section>
 
-            <section class="detalhe-galeria">
-               <div class="detalhe-imagem-container">
-                  <button class="detalhe-seta">‹</button>
+         <section class="detalhe-informacoes">
+            <article class="detalhe-painel detalhe-descricao">
+               <h3>Descrição</h3>
+               <p>${d.descricao}</p>
+            </article>
 
-                  <img
-                        class="detalhe-imagem"
-                        src="${imagem}"
-                        alt="${pokemon.name}"
-                  >
-
-                  <button class="detalhe-seta">›</button>
-               </div>
-
-               <div class="detalhe-miniaturas">
-                  ${[1, 2, 3, 4]
-                     .map(
-                        (n) => `
-                        <button class="detalhe-miniatura ${n === 1 ? "selecionada" : ""}">
-                           <img src="${imagem}" alt="Visualização ${n}">
-                        </button>
-                  `,
-                     )
-                     .join("")}
-               </div>
-            </section>
-
-            <section class="detalhe-informacoes">
-
-               <article class="detalhe-painel detalhe-descricao">
-                  <h3>Descrição</h3>
-                  <p>
-                        Informações sobre ${pokemon.name}.
-                        Conheça mais sobre este Pokémon.
-                  </p>
+            <div class="detalhe-grade">
+               <article class="detalhe-painel">
+                  <h3>Informações Gerais</h3>
+                  <div class="detalhe-linha"><span>♧ Altura</span><strong>${d.altura.toLocaleString("pt-BR")} m</strong></div>
+                  <div class="detalhe-linha"><span>▣ Peso</span><strong>${d.peso.toLocaleString("pt-BR")} kg</strong></div>
+                  <div class="detalhe-linha"><span>◎ Espécie</span><strong>${d.especie}</strong></div>
+                  <div class="detalhe-linha"><span>♡ Gênero</span><strong>${d.genero}</strong></div>
+                  <div class="detalhe-linha"><span>★ Habilidade(s)</span><strong>${d.habilidades.join(", ") || "—"}</strong></div>
+                  <div class="detalhe-linha"><span>✦ Habilidade Oculta</span><strong>${d.oculta.join(", ") || "—"}</strong></div>
                </article>
 
-               <div class="detalhe-grade">
+               <article class="detalhe-painel">
+                  <div class="detalhe-titulo-status">
+                     <h3>Status Base</h3>
+                     <span>Total: ${d.total}</span>
+                  </div>
+                  ${statusHTML}
+               </article>
+            </div>
 
-                  <article class="detalhe-painel">
-                        <h3>Informações Gerais</h3>
-
-                        <div class="detalhe-linha">
-                           <span>♧ Altura</span>
-                           <strong>—</strong>
-                        </div>
-
-                        <div class="detalhe-linha">
-                           <span>▣ Peso</span>
-                           <strong>—</strong>
-                        </div>
-
-                        <div class="detalhe-linha">
-                           <span>◎ Espécie</span>
-                           <strong>—</strong>
-                        </div>
-
-                        <div class="detalhe-linha">
-                           <span>♡ Gênero</span>
-                           <strong>—</strong>
-                        </div>
-
-                        <div class="detalhe-linha">
-                           <span>★ Habilidade(s)</span>
-                           <strong>—</strong>
-                        </div>
-
-                        <div class="detalhe-linha">
-                           <span>✦ Habilidade Oculta</span>
-                           <strong>—</strong>
-                        </div>
-                  </article>
-
-                  <article class="detalhe-painel">
-                        <div class="detalhe-titulo-status">
-                           <h3>Status Base</h3>
-                           <span>Total: —</span>
-                        </div>
-
-                        ${[
-                           "HP",
-                           "Ataque",
-                           "Defesa",
-                           "Ataque Esp.",
-                           "Defesa Esp.",
-                           "Velocidade",
-                        ]
-                           .map(
-                              (status) => `
-                           <div class="detalhe-status">
-                              <span>${status}</span>
-                              <strong>—</strong>
-                              <div class="detalhe-barra">
-                                    <span></span>
-                              </div>
-                           </div>
-                        `,
-                           )
-                           .join("")}
-                  </article>
-
-               </div>
-
-               <div class="detalhe-grade detalhe-grade-inferior">
-
-                  <article class="detalhe-painel">
-                        <h3>Evolução</h3>
-
-                        <div class="detalhe-evolucao">
-                           <div>🐣<small>Inicial</small></div>
-                           <span>→</span>
-                           <div>🐥<small>Intermediário</small></div>
-                           <span>→</span>
-                           <div>🐉<small>Final</small></div>
-                        </div>
-                  </article>
-               </div>
-            </section>
+            <div class="detalhe-grade detalhe-grade-inferior">
+               <article class="detalhe-painel">
+                  <h3>Evolução</h3>
+                  <div class="detalhe-evolucao">${evolucaoHTML}</div>
+               </article>
+            </div>
+         </section>
       </div>
    `
+}
 
-   detalhes.querySelector(".detalhe-fechar").addEventListener("click", () => {
-      detalhes.close()
-   })
+async function abrirDetalhes(pokemon) {
+   registrarVisto(pokemon.id)
 
+   detalhes.innerHTML = `<p>Carregando...</p>`
    detalhes.showModal()
+
+   try {
+      const dados = await buscarDetalhes(pokemon.id)
+      detalhes.innerHTML = montarDetalhes(dados)
+   } catch (erro) {
+      console.error("Falha ao carregar os detalhes:", erro)
+      detalhes.innerHTML = `
+         <p>Não foi possível carregar os detalhes.</p>
+         <button class="detalhe-fechar">Fechar</button>
+      `
+   }
+
+   detalhes
+      .querySelector(".detalhe-fechar")
+      .addEventListener("click", () => detalhes.close())
+
+   detalhes.querySelectorAll(".detalhe-miniatura").forEach((botao) => {
+      botao.addEventListener("click", () => {
+         detalhes.querySelector(".detalhe-imagem").src = botao.dataset.src
+
+         detalhes
+            .querySelectorAll(".detalhe-miniatura")
+            .forEach((b) => b.classList.remove("selecionada"))
+         botao.classList.add("selecionada")
+      })
+   })
 }
 
 const searchbar = document.getElementById("searchbar")

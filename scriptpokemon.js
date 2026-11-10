@@ -75,16 +75,42 @@ function criarCard(element) {
    section.appendChild(card)
 }
 
+const POR_PAGINA = 50
+const botaoVerMais = document.getElementById("ver_mais")
+
+let exibidos = 0
+
+function mostrarMais() {
+   const proximos = pokedex.slice(exibidos, exibidos + POR_PAGINA)
+
+   proximos.forEach((pokemon) => criarCard(pokemon))
+   exibidos += proximos.length
+
+   botaoVerMais.hidden = exibidos >= pokedex.length
+}
+
 async function carregarPokedex() {
    try {
-      const resposta = await fetch("./pokemons.json")
+      const resposta = await fetch(
+         "https://pokeapi.co/api/v2/pokemon?limit=100000",
+      )
       if (!resposta.ok) throw new Error("Erro " + resposta.status)
 
-      pokedex = await resposta.json()
-      pokedex.forEach((pokemon) => criarCard(pokemon))
+      const dados = await resposta.json()
+
+      pokedex = dados.results
+         .map(({ name, url }) => ({
+            id: Number(url.split("/").filter(Boolean).pop()),
+            name,
+         }))
+         .filter((pokemon) => pokemon.id < 10000)
+
+      mostrarMais()
    } catch (erro) {
       console.error("Não foi possível carregar os pokémons:", erro)
    }
 }
+
+botaoVerMais.addEventListener("click", mostrarMais)
 
 carregarPokedex()

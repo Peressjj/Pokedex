@@ -909,3 +909,20 @@ footer {
       grid-template-columns: 1fr;
    }
 }
+
+.detalhe-linha strong,
+.detalhe-evolucao small {
+   text-transform: capitalize;
+}
+
+.detalhe-evolucao img {
+   width: 64px;
+   height: 64px;
+   object-fit: contain;
+}
+
+.detalhe-evolucao .detalhe-etapa {
+   flex-direction: row;
+   flex-wrap: wrap;
+   justify-content: center;
+}
