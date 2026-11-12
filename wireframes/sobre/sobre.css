@@ -61,10 +61,12 @@
    color: white;
    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
    margin: 0;
+   font-size: clamp(20px, 5vw, 30px);
 }
 
 
 .retangulo {
+   min-width: 0;
    display: flex;
    flex-direction: column;
    gap: 20px;
@@ -119,12 +121,15 @@
 }
 
 .equipe {
-   display: grid;
-   grid-template-columns: repeat(5, 1fr);
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
    gap: 16px;
 }
 
 .membro {
+   flex: 1 1 150px;
+   max-width: 200px;
    display: flex;
    flex-direction: column;
    align-items: center;
@@ -157,4 +162,41 @@
    color: var(--purple-soft);
    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
    overflow-wrap: anywhere;
+}
+
+@media (max-width: 900px) {
+   .grid_quadruplo {
+      grid-template-columns: repeat(2, 1fr);
+   }
+}
+
+@media (max-width: 700px) {
+   .sobre_projeto {
+      flex-direction: column;
+      text-align: center;
+   }
+
+   .quadradinhos {
+      grid-template-columns: repeat(3, 1fr);
+   }
+}
+
+@media (max-width: 480px) {
+
+   .sobre_projeto,
+   .grid_quadruplo {
+      padding: 16px;
+   }
+
+   .retangulo {
+      padding: 14px;
+   }
+
+   .grid_quadruplo {
+      grid-template-columns: 1fr;
+   }
+
+   .quadrado br {
+      display: none;
+   }
 }
