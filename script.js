@@ -87,7 +87,6 @@ function alterar_tema() {
 aplicar_tema(localStorage.getItem("tema") === "amarelo")
 
 const detalhes = document.getElementById("detalhes")
-detalhes.classList.add("detalhes")
 
 async function buscarJSON(url) {
    const resposta = await fetch(url)
@@ -266,10 +265,12 @@ function montarDetalhes(d) {
       <div class="detalhe-layout">
          <section class="detalhe-galeria">
             <div class="detalhe-imagem-container">
-               <button class="detalhe-seta">‹</button>
+
+               <button class="detalhe-seta" data-direcao="-1" aria-label="Imagem anterior">‹</button>
                <img class="detalhe-imagem" src="${d.imagens[0]}" alt="${d.nome}">
-               <button class="detalhe-seta">›</button>
-            </div>
+               <button class="detalhe-seta" data-direcao="1" aria-label="Próxima imagem">›</button>
+            
+               </div>
             <div class="detalhe-miniaturas">${miniaturasHTML}</div>
          </section>
 
@@ -331,17 +332,52 @@ async function abrirDetalhes(pokemon) {
       .querySelector(".detalhe-fechar")
       .addEventListener("click", () => detalhes.close())
 
-   detalhes.querySelectorAll(".detalhe-miniatura").forEach((botao) => {
-      botao.addEventListener("click", () => {
-         detalhes.querySelector(".detalhe-imagem").src = botao.dataset.src
+   const botaoFavorito = detalhes.querySelector(".hearth_button")
 
-         detalhes
-            .querySelectorAll(".detalhe-miniatura")
-            .forEach((b) => b.classList.remove("selecionada"))
-         botao.classList.add("selecionada")
+   if (botaoFavorito) {
+      atualizarCoracao(botaoFavorito, ehFavorito(pokemon.id))
+
+      botaoFavorito.addEventListener("click", () => {
+         const nome = detalhes.querySelector(".detalhe-nome").textContent
+         const favoritado = alternarFavorito(pokemon.id, nome)
+         atualizarCoracao(botaoFavorito, favoritado)
       })
+   }
+
+   const imagemPrincipal = detalhes.querySelector(".detalhe-imagem")
+   const miniaturas = [...detalhes.querySelectorAll(".detalhe-miniatura")]
+   let atual = 0
+
+   function mostrarImagem(indice) {
+      atual = (indice + miniaturas.length) % miniaturas.length
+      imagemPrincipal.src = miniaturas[atual].dataset.src
+
+      miniaturas.forEach((m, i) =>
+         m.classList.toggle("selecionada", i === atual),
+      )
+   }
+
+   miniaturas.forEach((m, i) =>
+      m.addEventListener("click", () => mostrarImagem(i)),
+   )
+
+   detalhes.querySelectorAll(".detalhe-seta").forEach((seta) => {
+      seta.addEventListener("click", () =>
+         mostrarImagem(atual + Number(seta.dataset.direcao)),
+      )
    })
 }
+
+detalhes.addEventListener("click", (evento) => {
+   const caixa = detalhes.getBoundingClientRect()
+   const dentro =
+      evento.clientX >= caixa.left &&
+      evento.clientX <= caixa.right &&
+      evento.clientY >= caixa.top &&
+      evento.clientY <= caixa.bottom
+
+   if (!dentro) detalhes.close()
+})
 
 const searchbar = document.getElementById("searchbar")
 searchbar.classList.add("searchbar")
@@ -389,4 +425,31 @@ function registrarVisto(id) {
       vistos.push(id)
       localStorage.setItem("vistos", JSON.stringify(vistos))
    }
+}
+
+function lerFavoritos() {
+   return JSON.parse(localStorage.getItem("favoritos")) || []
+}
+
+function ehFavorito(id) {
+   return lerFavoritos().some((fav) => fav.id === id)
+}
+
+function alternarFavorito(id, nome) {
+   const favoritos = lerFavoritos()
+   const existe = favoritos.some((fav) => fav.id === id)
+
+   const novaLista = existe
+      ? favoritos.filter((fav) => fav.id !== id)
+      : [...favoritos, { id, name: nome }]
+
+   localStorage.setItem("favoritos", JSON.stringify(novaLista))
+   return !existe
+}
+
+function atualizarCoracao(botao, favoritado) {
+   botao.classList.toggle("favoritado", favoritado)
+   botao
+      .querySelector("ion-icon")
+      .setAttribute("name", favoritado ? "heart" : "heart-outline")
 }

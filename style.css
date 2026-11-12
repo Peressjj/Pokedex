@@ -587,30 +587,24 @@ footer {
    }
 }
 
-/* ===== MODAL DE DETALHES ===== */
-
 #detalhes {
    width: min(1040px, 94vw);
    max-width: none;
    max-height: 92vh;
    margin: auto;
    padding: 20px;
-
    overflow: auto;
    box-sizing: border-box;
-
    color: #f2edff;
    background:
       radial-gradient(ellipse at 15% 35%, #35105b66, transparent 45%),
       linear-gradient(135deg, #100820, #0a0617);
-
    border: 1px solid var(--purple);
    border-radius: 16px;
-
    box-shadow:
       0 0 8px var(--purple),
       0 0 24px var(--purple),
-      inset 0 0 24px var(--border-glow);
+      inset 0 0 24px color-mix(in srgb, var(--purple) 25%, transparent);
 }
 
 #detalhes::backdrop {
@@ -703,12 +697,12 @@ footer {
    flex-shrink: 0;
    width: 34px;
    height: 34px;
-   padding: 0 !important;
-   font-size: 28px !important;
+   padding: 0;
+   font-size: 28px;
    line-height: 1;
    background: var(--glass);
-   border: 1px solid var(--purple) !important;
-   border-radius: 50px !important;
+   border: 1px solid var(--purple);
+   border-radius: 50px;
 }
 
 .detalhe-miniaturas {
@@ -722,7 +716,7 @@ footer {
    display: grid;
    place-items: center;
    min-width: 0;
-   height: 64px;
+   height: 120px;
    padding: 4px !important;
 
    background: #10091f !important;
@@ -783,13 +777,13 @@ footer {
    padding: 8px 0;
 
    color: #c9bddc;
-   font-size: 10px;
+   font-size: 15px;
    border-top: 1px solid #29183b;
 }
 
 .detalhe-linha strong {
    color: #eee5ff;
-   font-size: 10px;
+   font-size: 13px;
    text-align: right;
 }
 
@@ -811,7 +805,7 @@ footer {
    align-items: center;
    gap: 7px;
    margin-top: 15px;
-   font-size: 10px;
+   font-size: 14px;
 }
 
 .detalhe-status strong {
@@ -869,18 +863,10 @@ footer {
       max-height: 94vh;
    }
 
-   .detalhe-container {
-      padding: 16px;
-   }
-
    .detalhe-cabecalho {
       flex-direction: column;
       align-items: flex-start;
       padding-right: 25px;
-   }
-
-   .detalhe-favorito {
-      align-self: flex-start;
    }
 
    .detalhe-layout {
@@ -925,4 +911,43 @@ footer {
    flex-direction: row;
    flex-wrap: wrap;
    justify-content: center;
+}
+
+.icone-tipo {
+   height: 32px;
+   width: auto;
+   display: block;
+}
+
+#detalhes button {
+   cursor: pointer;
+   transition: 0.3s;
+}
+
+#detalhes button:hover {
+   transform: scale(1.08);
+}
+
+#detalhes button:focus-visible {
+   outline: 2px solid var(--purple);
+   outline-offset: 2px;
+}
+
+.detalhe-botoes .hearth_button {
+   font-size: 28px;
+}
+
+.detalhe-botoes .detalhe-fechar {
+   font-size: 28px;
+   padding: 4px 10px;
+   line-height: 1;
+}
+
+.detalhe-botoes .detalhe-fechar:hover {
+   color: red;
+   transform: scale(1.1);
+}
+
+body:has(dialog[open]) {
+   overflow: hidden;
 }
