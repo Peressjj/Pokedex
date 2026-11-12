@@ -951,3 +951,84 @@ footer {
 body:has(dialog[open]) {
    overflow: hidden;
 }
+
+.duel {
+   border: solid var(--purple) 3px;
+   height: 75vh;
+   background-color: var(--glass);
+   border-radius: 10px;
+   padding: 10px;
+   gap: 10px;
+   backdrop-filter: blur(5px);
+   gap: 10px;
+   min-height: fit-content;
+   min-width: fit-content;
+}
+
+.cima {
+   border: solid red 1px;
+   display: flex;
+   justify-content: end;
+   height: 45px;
+}
+
+.voltar {
+   font-size: 20px;
+   border-radius: 50px;
+   border: solid var(--purple) 1px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 20px;
+   height: 20px;
+   padding: 20px;
+   background-color: var(--glass);
+   color: var(--purple);
+   cursor: pointer;
+   transition: 0.3s;
+}
+
+.voltar:hover {
+   scale: 1.1;
+   color: red;
+   border-color: red;
+}
+
+.two_cards {
+   border: solid var(--purple) 3px;
+   height: 60%;
+   padding: 20px;
+   border-radius: 10px;
+   display: flex;
+   justify-content: space-between;
+   flex-direction: row;
+}
+
+.mini_card {
+   min-width: fit-content;
+   min-height: fit-content;
+   border: solid var(--purple) 3px;
+   height: 95%;
+   width: 48%;
+   border-radius: 10px;
+   background-color: var(--glass);
+}
+
+.two_atributes {
+   border: solid var(--purple);
+   height: 40%;
+   padding: 20px;
+   border-radius: 10px;
+   display: flex;
+   justify-content: space-between;
+   flex-direction: row;
+   gap: 10px;
+}
+
+.atribute {
+   border: solid var(--purple) 3px;
+   border-radius: 10px;
+   height: 98%;
+   width: 48%;
+   background-color: var(--glass);
+}

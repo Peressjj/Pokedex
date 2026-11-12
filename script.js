@@ -453,3 +453,9 @@ function atualizarCoracao(botao, favoritado) {
       .querySelector("ion-icon")
       .setAttribute("name", favoritado ? "heart" : "heart-outline")
 }
+
+const sword = document.getElementById("sword_button")
+
+sword.innerHTML = `
+   
+`
