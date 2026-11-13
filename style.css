@@ -371,6 +371,7 @@ main {
 }
 
 .card {
+   position: relative;
    width: 100%;
    height: auto;
    aspect-ratio: 1 / 1.4;         
@@ -952,36 +953,105 @@ body:has(dialog[open]) {
    overflow: hidden;
 }
 
+
+.card.selecionado {
+   scale: 1.1;
+   box-shadow: 0 0 18px 4px white;
+   z-index: 2;
+}
+
+.card_ordem {
+   position: absolute;
+   top: -12px;
+   left: -12px;
+   width: 30px;
+   height: 30px;
+   display: grid;
+   place-items: center;
+   border-radius: 50%;
+   background: white;
+   color: black;
+   font-weight: bold;
+   border: 3px solid var(--purple);
+}
+
+.aviso_comparar {
+   position: fixed;
+   bottom: 60px;
+   left: 50%;
+   transform: translateX(-50%);
+   z-index: 90;
+   display: flex;
+   align-items: center;
+   gap: 12px;
+   max-width: 90vw;
+   padding: 10px 16px;
+   color: white;
+   background: var(--glass);
+   backdrop-filter: blur(10px);
+   border: 1px solid var(--purple);
+   border-radius: 100px;
+   box-shadow: var(--border-glow);
+}
+
+.aviso_comparar[hidden] {
+   display: none;
+}
+
+.aviso_cancelar {
+   color: white;
+   background: none;
+   border: 1px solid var(--purple);
+   border-radius: 100px;
+   font-family: cursive;
+   cursor: pointer;
+   transition: 0.3s;
+}
+
+.aviso_cancelar:hover {
+   color: red;
+   border-color: red;
+}
+
 .duel {
-   border: solid var(--purple) 3px;
-   height: 75vh;
+   width: min(1000px, 94vw);
+   max-height: 92vh;
+   padding: 16px;
+   overflow: auto;
+   color: white;
    background-color: var(--glass);
-   border-radius: 10px;
-   padding: 10px;
-   gap: 10px;
    backdrop-filter: blur(5px);
-   gap: 10px;
-   min-height: fit-content;
-   min-width: fit-content;
+   border: solid var(--purple) 3px;
+   border-radius: 10px;
+   box-shadow: var(--border-glow);
+}
+
+.duel[open] {
+   display: flex;
+   flex-direction: column;
+   gap: 12px;
+}
+
+.duel::backdrop {
+   background: rgba(0, 0, 10, 0.82);
+   backdrop-filter: blur(5px);
 }
 
 .cima {
-   border: solid red 1px;
    display: flex;
-   justify-content: end;
-   height: 45px;
+   justify-content: flex-end;
 }
 
 .voltar {
-   font-size: 20px;
-   border-radius: 50px;
-   border: solid var(--purple) 1px;
    display: flex;
    justify-content: center;
    align-items: center;
-   width: 20px;
-   height: 20px;
-   padding: 20px;
+   width: 44px;
+   height: 44px;
+   padding: 0;
+   font-size: 20px;
+   border-radius: 50px;
+   border: solid var(--purple) 1px;
    background-color: var(--glass);
    color: var(--purple);
    cursor: pointer;
@@ -994,41 +1064,121 @@ body:has(dialog[open]) {
    border-color: red;
 }
 
-.two_cards {
+.two_cards,
+.two_atributes {
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   gap: 16px;
+}
+
+.mini_card,
+.atribute {
+   padding: 14px;
    border: solid var(--purple) 3px;
-   height: 60%;
-   padding: 20px;
    border-radius: 10px;
-   display: flex;
-   justify-content: space-between;
-   flex-direction: row;
+   background-color: var(--glass);
 }
 
 .mini_card {
-   min-width: fit-content;
-   min-height: fit-content;
-   border: solid var(--purple) 3px;
-   height: 95%;
-   width: 48%;
-   border-radius: 10px;
-   background-color: var(--glass);
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 6px;
+   text-align: center;
 }
 
-.two_atributes {
-   border: solid var(--purple);
-   height: 40%;
-   padding: 20px;
-   border-radius: 10px;
+.mini_card_id {
+   margin: 0;
+   color: #bca9d7;
+}
+
+.mini_card_nome {
+   margin: 0;
+   font-size: clamp(18px, 3vw, 26px);
+   text-transform: capitalize;
+}
+
+.mini_card_img {
+   width: 100%;
+   max-width: 200px;
+   aspect-ratio: 1;
+   object-fit: contain;
+   filter: drop-shadow(0 0 5px white);
+}
+
+.mini_card_tipos {
+   display: flex;
+   gap: 8px;
+}
+
+.atribute .detalhe-status:first-child {
+   margin-top: 0;
+}
+
+.atribute .maior strong {
+   color: #4ade80;
+}
+
+.atribute .menor strong {
+   color: #f87171;
+}
+
+.atribute_total {
    display: flex;
    justify-content: space-between;
-   flex-direction: row;
-   gap: 10px;
+   margin-top: 15px;
+   padding-top: 10px;
+   font-size: 12px;
+   border-top: 1px solid #29183b;
 }
 
-.atribute {
-   border: solid var(--purple) 3px;
-   border-radius: 10px;
-   height: 98%;
-   width: 48%;
-   background-color: var(--glass);
+.atribute_total.maior strong {
+   color: #4ade80;
+}
+
+.atribute_total.menor strong {
+   color: #f87171;
+}
+
+@media (max-width: 600px) {
+   .duel {
+      padding: 10px;
+   }
+
+   .mini_card,
+   .atribute {
+      padding: 8px;
+   }
+
+   .atribute .detalhe-barra {
+      display: none;
+   }
+}
+
+
+.atribute_infos {
+   margin-top: 15px;
+}
+
+.atribute_info {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   gap: 8px;
+   padding: 8px 0;
+   font-size: 12px;
+   color: #c9bddc;
+   border-top: 1px solid #29183b;
+}
+
+.atribute_info strong {
+   color: #eee5ff;
+   text-align: right;
+   text-transform: capitalize;
+}
+
+.atribute .destaque strong::after {
+   content: " ▲";
+   font-size: 9px;
+   color: var(--purple);
 }

@@ -198,15 +198,6 @@ function montarDetalhes(d) {
       )
       .join("")
 
-   const nomesStatus = [
-      "HP",
-      "Ataque",
-      "Defesa",
-      "Ataque Esp.",
-      "Defesa Esp.",
-      "Velocidade",
-   ]
-
    const statusHTML = d.stats
       .map(
          (valor, i) => `
@@ -310,6 +301,15 @@ function montarDetalhes(d) {
       </div>
    `
 }
+
+const nomesStatus = [
+   "HP",
+   "Ataque",
+   "Defesa",
+   "Ataque Esp.",
+   "Defesa Esp.",
+   "Velocidade",
+]
 
 async function abrirDetalhes(pokemon) {
    registrarVisto(pokemon.id)
@@ -454,8 +454,208 @@ function atualizarCoracao(botao, favoritado) {
       .setAttribute("name", favoritado ? "heart" : "heart-outline")
 }
 
-const sword = document.getElementById("sword_button")
 
-sword.innerHTML = `
-   
+let primeiro = null 
+const aviso = document.createElement("div")
+aviso.className = "aviso_comparar"
+aviso.hidden = true
+aviso.innerHTML = `
+   <span>Selecione outro Pokémon para comparar</span>
+   <button class="aviso_cancelar">Cancelar</button>
 `
+document.body.append(aviso)
+aviso
+   .querySelector(".aviso_cancelar")
+   .addEventListener("click", cancelarComparacao)
+
+const comparar = document.createElement("dialog")
+comparar.id = "comparar"
+comparar.className = "duel"
+document.body.append(comparar)
+
+comparar.addEventListener("click", (evento) => {
+   if (evento.target.closest(".voltar")) comparar.close()
+})
+comparar.addEventListener("close", cancelarComparacao)
+
+function idDoCard(card) {
+   return Number(card.querySelector(".card_id").textContent.replace(/\D/g, ""))
+}
+
+function marcarCard(card, numero) {
+   card.classList.add("selecionado")
+
+   const bolinha = document.createElement("span")
+   bolinha.className = "card_ordem"
+   bolinha.textContent = numero
+   card.append(bolinha)
+}
+
+function desmarcarCard(card) {
+   card.classList.remove("selecionado")
+   card.querySelector(".card_ordem")?.remove()
+}
+
+function cancelarComparacao() {
+   document.querySelectorAll(".card.selecionado").forEach(desmarcarCard)
+   primeiro = null
+   aviso.hidden = true
+}
+
+function aoClicarEspada(card) {
+   if (!primeiro) {
+      primeiro = card
+      marcarCard(card, 1)
+      aviso.hidden = false
+      return
+   }
+
+   if (primeiro === card) {
+      cancelarComparacao()
+      return
+   }
+
+   abrirComparacao(primeiro, card)
+}
+
+document.getElementById("section")?.addEventListener(
+   "click",
+   (evento) => {
+      const botao = evento.target.closest(".sword_button")
+      if (!botao) return
+
+      evento.stopPropagation()
+      aoClicarEspada(botao.closest(".card"))
+   },
+   true,
+)
+
+async function abrirComparacao(cardA, cardB) {
+   marcarCard(cardB, 2)
+   aviso.hidden = true
+
+   comparar.innerHTML = `<p>Carregando...</p>`
+   comparar.showModal()
+
+   try {
+      const [a, b] = await Promise.all([
+         buscarDetalhes(idDoCard(cardA)),
+         buscarDetalhes(idDoCard(cardB)),
+      ])
+      comparar.innerHTML = montarComparacao(a, b)
+   } catch (erro) {
+      console.error("Falha ao carregar a comparação:", erro)
+      comparar.innerHTML = `
+         <div class="cima"><button class="voltar" aria-label="Fechar">X</button></div>
+         <p>Não foi possível carregar a comparação.</p>
+      `
+   }
+}
+
+function montarMiniCard(d) {
+   const tipos = d.tipos
+      .map(
+         (t) => `
+         <img class="icone-tipo" alt="${t.nome}"
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-vii/lets-go-pikachu-lets-go-eevee/${t.id}.png">`,
+      )
+      .join("")
+
+   return `
+      <div class="mini_card">
+         <p class="mini_card_id">#${String(d.id).padStart(4, "0")}</p>
+         <img class="mini_card_img" src="${d.imagens[0]}" alt="${d.nome}">
+         <h3 class="mini_card_nome">${d.nome}</h3>
+         <div class="mini_card_tipos">${tipos}</div>
+      </div>`
+}
+
+function montarColunaAtributos(d, outro) {
+   const classe = (x, y) => (x > y ? "maior" : x < y ? "menor" : "")
+
+   const linhas = d.stats
+      .map(
+         (valor, i) => `
+         <div class="detalhe-status ${classe(valor, outro.stats[i])}">
+            <span>${nomesStatus[i]}</span>
+            <strong>${valor}</strong>
+            <div class="detalhe-barra">
+               <span style="width: ${Math.min(100, (valor / 255) * 100)}%"></span>
+            </div>
+         </div>`,
+      )
+      .join("")
+
+   return `
+      ${linhas}
+      <div class="atribute_total ${classe(d.total, outro.total)}">
+         <span>Total</span>
+         <strong>${d.total}</strong>
+      </div>`
+}
+
+function montarComparacao(a, b) {
+   return `
+      <div class="cima">
+         <button class="voltar" aria-label="Fechar comparação">X</button>
+      </div>
+
+      <div class="two_cards">
+         ${montarMiniCard(a)}
+         ${montarMiniCard(b)}
+      </div>
+
+      <div class="two_atributes">
+         <div class="atribute">${montarColunaAtributos(a, b)}</div>
+         <div class="atribute">${montarColunaAtributos(b, a)}</div>
+      </div>`
+}
+
+function montarColunaAtributos(d, outro) {
+   const classe = (x, y) => (x > y ? "maior" : x < y ? "menor" : "")
+   const destaque = (x, y) => (x > y ? "destaque" : "")
+
+   const linhas = d.stats
+      .map(
+         (valor, i) => `
+         <div class="detalhe-status ${classe(valor, outro.stats[i])}">
+            <span>${nomesStatus[i]}</span>
+            <strong>${valor}</strong>
+            <div class="detalhe-barra">
+               <span style="width: ${Math.min(100, (valor / 255) * 100)}%"></span>
+            </div>
+         </div>`,
+      )
+      .join("")
+
+   const infos = [
+      [
+         "Altura",
+         `${d.altura.toLocaleString("pt-BR")} m`,
+         destaque(d.altura, outro.altura),
+      ],
+      [
+         "Peso",
+         `${d.peso.toLocaleString("pt-BR")} kg`,
+         destaque(d.peso, outro.peso),
+      ],
+      ["Habilidade(s)", d.habilidades.join(", ") || "—", ""],
+      ["Habilidade oculta", d.oculta.join(", ") || "—", ""],
+   ]
+      .map(
+         ([nome, valor, extra]) => `
+         <div class="atribute_info ${extra}">
+            <span>${nome}</span>
+            <strong>${valor}</strong>
+         </div>`,
+      )
+      .join("")
+
+   return `
+      ${linhas}
+      <div class="atribute_total ${classe(d.total, outro.total)}">
+         <span>Total</span>
+         <strong>${d.total}</strong>
+      </div>
+      <div class="atribute_infos">${infos}</div>`
+}
