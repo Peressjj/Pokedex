@@ -5,12 +5,20 @@ body {
    overflow: hidden;
 }
 
+body.tema_amarelo {
+   --purple: var(--yellow);
+   --border-glow: 0 0 12px rgba(255, 247, 0, 0.676);
+   background-image: url(../../assets/Backgrounds/background_tela_erro.jpg);
+}
+
 .return_button {
-   color: white;
+   font-family: sans-serif;
+   text-decoration: none;
+   color: red;
    border-radius: 10px;
    font-size: 50px;
    border-color: red;
-   background-color: var(--glass);
+   background-color: black;
    box-shadow: 0 0 22px red;
    transition: 0.3s;
    padding: 10px;
