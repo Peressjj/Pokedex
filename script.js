@@ -454,8 +454,7 @@ function atualizarCoracao(botao, favoritado) {
       .setAttribute("name", favoritado ? "heart" : "heart-outline")
 }
 
-
-let primeiro = null 
+let primeiro = null
 const aviso = document.createElement("div")
 aviso.className = "aviso_comparar"
 aviso.hidden = true
@@ -543,6 +542,7 @@ async function abrirComparacao(cardA, cardB) {
          buscarDetalhes(idDoCard(cardB)),
       ])
       comparar.innerHTML = montarComparacao(a, b)
+      registrarComparacao()
    } catch (erro) {
       console.error("Falha ao carregar a comparação:", erro)
       comparar.innerHTML = `
@@ -659,3 +659,9 @@ function montarColunaAtributos(d, outro) {
       </div>
       <div class="atribute_infos">${infos}</div>`
 }
+
+function registrarComparacao() {
+   const total = Number(localStorage.getItem("comparacoes")) || 0
+   localStorage.setItem("comparacoes", total + 1)
+}
+

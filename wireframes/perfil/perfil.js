@@ -55,3 +55,15 @@ function removerFavorito(id) {
 }
 
 atualizarPerfil()
+
+function atualizarPerfil() {
+   const favoritos = JSON.parse(localStorage.getItem("favoritos")) || []
+   const vistos = JSON.parse(localStorage.getItem("vistos")) || []
+   const comparacoes = Number(localStorage.getItem("comparacoes")) || 0
+
+   document.getElementById("stat_favoritos").textContent = favoritos.length
+   document.getElementById("stat_vistos").textContent = vistos.length
+   document.getElementById("stat_comparacoes").textContent = comparacoes
+
+   exibirFavoritosPerfil(favoritos)
+}
