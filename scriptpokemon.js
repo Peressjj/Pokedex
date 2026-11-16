@@ -4,31 +4,6 @@ const section = document.getElementById("section")
 
 let pokedex = []
 
-function lerFavoritos() {
-   return JSON.parse(localStorage.getItem("favoritos")) || []
-}
-
-function salvarFavoritos(lista) {
-   localStorage.setItem("favoritos", JSON.stringify(lista))
-}
-
-function estaFavoritado(id) {
-   return lerFavoritos().some((fav) => fav.id === id)
-}
-
-function alternarFavorito(pokemon) {
-   const favoritos = lerFavoritos()
-
-   if (estaFavoritado(pokemon.id)) {
-      salvarFavoritos(favoritos.filter((fav) => fav.id !== pokemon.id))
-      return false
-   }
-
-   favoritos.push({ id: pokemon.id, name: pokemon.name })
-   salvarFavoritos(favoritos)
-   return true
-}
-
 function criarCard(element) {
    const card = document.createElement("article")
    card.classList.add("card")
@@ -58,18 +33,12 @@ function criarCard(element) {
    })
 
    const heartButton = card.querySelector(".hearth_button")
-   const heartIcon = heartButton.querySelector("ion-icon")
 
-   function atualizarCoracao(favoritado) {
-      heartIcon.setAttribute("name", favoritado ? "heart" : "heart-outline")
-      heartButton.classList.toggle("favoritado", favoritado)
-   }
-
-   atualizarCoracao(estaFavoritado(element.id))
+   atualizarCoracao(heartButton, ehFavorito(element.id))
 
    heartButton.addEventListener("click", (event) => {
       event.stopPropagation()
-      atualizarCoracao(alternarFavorito(element))
+      atualizarCoracao(heartButton, alternarFavorito(element.id, element.name))
    })
 
    section.appendChild(card)

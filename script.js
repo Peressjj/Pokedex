@@ -1,4 +1,4 @@
-console.log(`JS conectado!\n`)
+console.log(`script.js conectado!\n`)
 
 const footer = document.getElementById("footer")
 footer.classList.add("footer")
@@ -368,7 +368,7 @@ async function abrirDetalhes(pokemon) {
    })
 }
 
-detalhes.addEventListener("click", (evento) => {
+detalhes?.addEventListener("click", (evento) => {
    const caixa = detalhes.getBoundingClientRect()
    const dentro =
       evento.clientX >= caixa.left &&
@@ -380,43 +380,38 @@ detalhes.addEventListener("click", (evento) => {
 })
 
 const searchbar = document.getElementById("searchbar")
-searchbar.classList.add("searchbar")
-searchbar.innerHTML = `
-   <input type="search" id="search_input" class="search_input"
-      placeholder="Pesquisar..." autocomplete="off" aria-label="Pesquisar Pokémon">
-   <span class="search_icon">🔍</span>
-`
 
-const inputPesquisa = document.getElementById("search_input")
+if (searchbar) {
+   searchbar.classList.add("searchbar")
+   searchbar.innerHTML = `
+      <input type="search" id="search_input" class="search_input"
+         placeholder="Pesquisar..." autocomplete="off" aria-label="Pesquisar Pokémon">
+      <span class="search_icon">🔍</span>
+   `
 
-searchbar.addEventListener("click", () => inputPesquisa.focus())
+   const inputPesquisa = document.getElementById("search_input")
 
-function normalizar(texto) {
-   return texto
-      .toLowerCase()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .trim()
-}
+   searchbar.addEventListener("click", () => inputPesquisa.focus())
 
-const semResultado = document.getElementById("sem_resultado")
+   const semResultado = document.getElementById("sem_resultado")
 
-inputPesquisa.addEventListener("input", () => {
-   const termo = normalizar(inputPesquisa.value)
-   const cards = document.querySelectorAll(".card")
-   let encontrados = 0
+   inputPesquisa.addEventListener("input", () => {
+      const termo = normalizar(inputPesquisa.value)
+      const cards = document.querySelectorAll(".card")
+      let encontrados = 0
 
-   cards.forEach((card) => {
-      const nome = normalizar(card.querySelector(".card_title").textContent)
-      const id = normalizar(card.querySelector(".card_id").textContent)
-      const combina = nome.includes(termo) || id.includes(termo)
+      cards.forEach((card) => {
+         const nome = normalizar(card.querySelector(".card_title").textContent)
+         const id = normalizar(card.querySelector(".card_id").textContent)
+         const combina = nome.includes(termo) || id.includes(termo)
 
-      card.hidden = !combina
-      if (combina) encontrados++
+         card.hidden = !combina
+         if (combina) encontrados++
+      })
+
+      semResultado.hidden = encontrados > 0
    })
-
-   semResultado.hidden = encontrados > 0
-})
+}
 
 function registrarVisto(id) {
    const vistos = JSON.parse(localStorage.getItem("vistos")) || []

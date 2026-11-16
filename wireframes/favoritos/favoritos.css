@@ -7,3 +7,20 @@
    background-color: transparent;
    font-size: 15px;
 }
+
+.sem_favoritos {
+   color: white;
+   background-color: var(--glass);
+   border: solid var(--purple) 3px;
+   padding: 10px;
+   border-radius: 10px;
+   backdrop-filter: blur(5px);
+}
+
+.centro {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 100vh;
+   border: none;
+}
