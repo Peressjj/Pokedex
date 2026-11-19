@@ -44,7 +44,7 @@ function criarCard(element) {
    section.appendChild(card)
 }
 
-const POR_PAGINA = 50
+const POR_PAGINA = 10079
 const botaoVerMais = document.getElementById("ver_mais")
 
 let exibidos = 0
