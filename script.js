@@ -205,7 +205,7 @@ function montarDetalhes(d) {
             <span>${nomesStatus[i]}</span>
             <strong>${valor}</strong>
             <div class="detalhe-barra">
-               <span style="width: ${Math.min(100, (valor / 255) * 100)}%"></span>
+               <span style="width: ${Math.min(100, (valor / 120) * 100)}%"></span>
             </div>
          </div>`,
       )

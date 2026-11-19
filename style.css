@@ -253,6 +253,71 @@ body.tema_amarelo {
    cursor: pointer;
 }
 
+.box_filter {
+   border: solid var(--purple) 2px;
+   border-radius: 12px;
+   background-color: var(--glass);
+   backdrop-filter: blur(3px);
+   padding: 10px;
+   width: fit-content;
+
+   display: grid;
+   grid-template-columns: repeat(2, 1fr);
+   gap: 6px;
+}
+
+.opcoes {
+   border: solid var(--purple) 1px;
+   border-radius: 10px;
+   padding: 6px 10px;
+   color: white;
+   cursor: pointer;
+   transition: 0.3s;
+
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   align-items: center;
+   gap: 12px;
+}
+
+.opcoes:hover {
+   background-color: rgba(139, 92, 246, 0.25);
+   scale: 1.03;
+}
+
+.name_filter {
+   margin: 0;
+   font-size: 14px;
+}
+
+.toogle_filter {
+   border: none;
+   border-radius: 50%;
+   width: 24px;
+   height: 24px;
+   border: solid var(--purple) 2px;
+   padding: 0;
+   background-color: transparent;
+   color: white;
+   background-color: var(--glass);
+   font-size: 16px;
+   cursor: pointer;
+   transition: 0.3s;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.opcoes.ativo {
+   background-color: rgba(139, 92, 246, 0.4);
+   border-color: white;
+}
+
+.opcoes.ativo .toogle_filter {
+   background-color: var(--purple);
+}
+
 main {
    border: none;
    border-radius: 20px;
