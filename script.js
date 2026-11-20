@@ -660,3 +660,200 @@ function registrarComparacao() {
    localStorage.setItem("comparacoes", total + 1)
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const box_filter = document.querySelector(".box_filter")
+   box_filter.innerHTML = `
+      <button class="fechar_filter">Fechar</button>
+      <div class="opcoes">
+         <p class="name_filter">Normal</p>
+
+         <button class="toogle_filter">
+            <ion-icon name="ellipse-outline"></ion-icon>
+         </button>
+      </div>
+
+      <div class="opcoes">
+         <p class="name_filter">Fogo</p>
+      
+         <button class="toogle_filter">
+            <ion-icon name="ellipse-outline"></ion-icon>
+         </button>
+      </div>
+
+      <div class="opcoes">
+         <p class="name_filter">Água</p>
+
+         <button class="toogle_filter">
+            <ion-icon name="ellipse-outline"></ion-icon>
+         </button>
+      </div>
+
+      <div class="opcoes">
+         <p class="name_filter">Elétrico</p>
+
+         <button class="toogle_filter">
+            <ion-icon name="ellipse-outline"></ion-icon>
+         </button>
+      </div>
+
+      <div class="opcoes">
+         <p class="name_filter">Grama</p>
+
+         <button class="toogle_filter">
+            <ion-icon name="ellipse-outline"></ion-icon>
+         </button>
+      </div>
+
+      <div class="opcoes">
+         <p class="name_filter">Gelo</p>
+
+         <button class="toogle_filter">
+            <ion-icon name="ellipse-outline"></ion-icon>
+         </button>
+      </div>
+
+      <div class="opcoes">
+         <p class="name_filter">Lutador</p>
+
+         <button class="toogle_filter">
+            <ion-icon name="ellipse-outline"></ion-icon>
+         </button>
+      </div>
+
+      <div class="opcoes">
+         <p class="name_filter">Veneno</p>
+
+         <button class="toogle_filter">
+            <ion-icon name="ellipse-outline"></ion-icon>
+         </button>
+      </div>
+
+      <div class="opcoes">
+         <p class="name_filter">Terra</p>
+
+         <button class="toogle_filter">
+            <ion-icon name="ellipse-outline"></ion-icon>
+         </button>
+      </div>
+
+      <div class="opcoes">
+         <p class="name_filter">Voador</p>
+
+         <button class="toogle_filter">
+            <ion-icon name="ellipse-outline"></ion-icon>
+         </button>
+      </div>
+
+      <div class="opcoes">
+         <p class="name_filter">Psíquico</p>
+
+         <button class="toogle_filter">
+            <ion-icon name="ellipse-outline"></ion-icon>
+         </button>
+      </div>
+
+      <div class="opcoes">
+         <p class="name_filter">Inseto</p>
+
+         <button class="toogle_filter">
+            <ion-icon name="ellipse-outline"></ion-icon>
+         </button>
+      </div>
+
+      <div class="opcoes">
+         <p class="name_filter">Pedra</p>
+
+         <button class="toogle_filter">
+            <ion-icon name="ellipse-outline"></ion-icon>
+         </button>
+      </div>
+
+      <div class="opcoes">
+         <p class="name_filter">Fantasma</p>
+
+         <button class="toogle_filter">
+            <ion-icon name="ellipse-outline"></ion-icon>
+         </button>
+      </div>
+
+      <div class="opcoes">
+         <p class="name_filter">Dragão</p>
+
+         <button class="toogle_filter">
+            <ion-icon name="ellipse-outline"></ion-icon>
+         </button>
+      </div>
+
+      <div class="opcoes">
+         <p class="name_filter">Sombrio</p>
+
+         <button class="toogle_filter">
+            <ion-icon name="ellipse-outline"></ion-icon>
+         </button>
+      </div>
+
+      <div class="opcoes">
+         <p class="name_filter">Aço</p>
+
+         <button class="toogle_filter">
+            <ion-icon name="ellipse-outline"></ion-icon>
+         </button>
+      </div>
+
+      <div class="opcoes">
+         <p class="name_filter">Fada</p>
+
+         <button class="toogle_filter">
+            <ion-icon name="ellipse-outline"></ion-icon>
+         </button>
+      </div>
+   `
+
+
+
+
+
+
+
+
+
+
+
+
+
+const botaoFiltro = document.getElementById("filter")
+const caixaFiltro = document.querySelector(".box_filter")
+
+botaoFiltro?.addEventListener("click", () => caixaFiltro.showModal())
+
+caixaFiltro
+   ?.querySelector(".fechar_filter")
+   ?.addEventListener("click", () => caixaFiltro.close())
+
+caixaFiltro?.addEventListener("click", (evento) => {
+   const caixa = caixaFiltro.getBoundingClientRect()
+   const dentro =
+      evento.clientX >= caixa.left &&
+      evento.clientX <= caixa.right &&
+      evento.clientY >= caixa.top &&
+      evento.clientY <= caixa.bottom
+
+   if (!dentro) caixaFiltro.close()
+})

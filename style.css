@@ -424,6 +424,44 @@ main {
    scale: 1.03;
 }
 
+.box_filter {
+   width: min(420px, 90vw);
+   max-height: 80vh;
+   overflow-y: auto;
+}
+
+.box_filter[open] {
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   gap: 10px;
+}
+
+.fechar_filter {
+   border: solid var(--purple) 2px;
+   background-color: var(--glass);
+   backdrop-filter: blur(5px);
+   border-radius: 10px;
+   color: white;
+   grid-column: 1 / -1;
+   cursor: pointer;
+   transition: 0.3s;
+}
+
+.fechar_filter:hover {
+   color: red;
+   background-color: black;
+   border: solid red 2px;
+}
+
+.box_filter::backdrop {
+   background: rgb(0 0 0 / 0.6);
+   backdrop-filter: blur(6px);
+}
+
+.box_filter:not([open]) {
+   display: none;
+}
+
 #section {
    display: grid;
    gap: 60px;
