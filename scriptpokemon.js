@@ -3,6 +3,7 @@ console.log("scriptpokemons.js carregado!")
 const section = document.getElementById("section")
 
 let pokedex = []
+let listaAtual = [] 
 
 function criarCard(element) {
    const card = document.createElement("article")
@@ -44,18 +45,25 @@ function criarCard(element) {
    section.appendChild(card)
 }
 
-const POR_PAGINA = 10079
+const POR_PAGINA = 200
 const botaoVerMais = document.getElementById("ver_mais")
 
 let exibidos = 0
 
 function mostrarMais() {
-   const proximos = pokedex.slice(exibidos, exibidos + POR_PAGINA)
+   const proximos = listaAtual.slice(exibidos, exibidos + POR_PAGINA)
 
    proximos.forEach((pokemon) => criarCard(pokemon))
    exibidos += proximos.length
 
-   botaoVerMais.hidden = exibidos >= pokedex.length
+   botaoVerMais.hidden = exibidos >= listaAtual.length
+}
+
+function exibirLista(lista) {
+   listaAtual = lista
+   section.innerHTML = ""
+   exibidos = 0
+   mostrarMais()
 }
 
 async function carregarPokedex() {
@@ -74,7 +82,7 @@ async function carregarPokedex() {
          }))
          .filter((pokemon) => pokemon.id < 10000)
 
-      mostrarMais()
+      exibirLista(pokedex)
    } catch (erro) {
       console.error("Não foi possível carregar os pokémons:", erro)
    }

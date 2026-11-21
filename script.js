@@ -857,3 +857,81 @@ caixaFiltro?.addEventListener("click", (evento) => {
 
    if (!dentro) caixaFiltro.close()
 })
+
+const tiposIngles = [
+   "normal",
+   "fire",
+   "water",
+   "electric",
+   "grass",
+   "ice",
+   "fighting",
+   "poison",
+   "ground",
+   "flying",
+   "psychic",
+   "bug",
+   "rock",
+   "ghost",
+   "dragon",
+   "dark",
+   "steel",
+   "fairy",
+   ]
+
+caixaFiltro.querySelectorAll(".toogle_filter").forEach((botao, i) => {
+   botao.dataset.tipo = tiposIngles[i]
+})
+
+const filtrosAtivos = new Set()
+const cacheTipos = {}
+
+async function idsDoTipo(tipo) {
+   if (!cacheTipos[tipo]) {
+      const dados = await buscarJSON(`https://pokeapi.co/api/v2/type/${tipo}`)
+      cacheTipos[tipo] = new Set(
+         dados.pokemon.map(({ pokemon }) => idDaUrl(pokemon.url)),
+      )
+   }
+   return cacheTipos[tipo]
+}
+
+async function aplicarFiltros() {
+   const mensagem = document.getElementById("sem_resultado")
+
+   if (filtrosAtivos.size === 0) {
+      exibirLista(pokedex)
+      mensagem.hidden = true
+      return
+   }
+
+   try {
+      const conjuntos = await Promise.all([...filtrosAtivos].map(idsDoTipo))
+
+      const filtrados = pokedex.filter((pokemon) =>
+         conjuntos.every((conjunto) => conjunto.has(pokemon.id)),
+      )
+
+      exibirLista(filtrados)
+      mensagem.hidden = filtrados.length > 0
+   } catch (erro) {
+      console.error("Falha ao aplicar os filtros:", erro)
+   }
+}
+
+caixaFiltro.addEventListener("click", (evento) => {
+   const botao = evento.target.closest(".toogle_filter")
+   if (!botao) return
+
+   const tipo = botao.dataset.tipo
+   const ativo = !filtrosAtivos.has(tipo)
+
+   if (ativo) filtrosAtivos.add(tipo)
+   else filtrosAtivos.delete(tipo)
+
+   botao
+      .querySelector("ion-icon")
+      .setAttribute("name", ativo ? "ellipse" : "ellipse-outline")
+
+   aplicarFiltros()
+})
