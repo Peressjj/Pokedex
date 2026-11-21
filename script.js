@@ -393,24 +393,7 @@ if (searchbar) {
 
    searchbar.addEventListener("click", () => inputPesquisa.focus())
 
-   const semResultado = document.getElementById("sem_resultado")
-
-   inputPesquisa.addEventListener("input", () => {
-      const termo = normalizar(inputPesquisa.value)
-      const cards = document.querySelectorAll(".card")
-      let encontrados = 0
-
-      cards.forEach((card) => {
-         const nome = normalizar(card.querySelector(".card_title").textContent)
-         const id = normalizar(card.querySelector(".card_id").textContent)
-         const combina = nome.includes(termo) || id.includes(termo)
-
-         card.hidden = !combina
-         if (combina) encontrados++
-      })
-
-      semResultado.hidden = encontrados > 0
-   })
+   inputPesquisa.addEventListener("input", atualizarLista)
 }
 
 function registrarVisto(id) {
@@ -660,24 +643,6 @@ function registrarComparacao() {
    localStorage.setItem("comparacoes", total + 1)
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 const box_filter = document.querySelector(".box_filter")
    box_filter.innerHTML = `
       <button class="fechar_filter">Fechar</button>
@@ -826,18 +791,6 @@ const box_filter = document.querySelector(".box_filter")
       </div>
    `
 
-
-
-
-
-
-
-
-
-
-
-
-
 const botaoFiltro = document.getElementById("filter")
 const caixaFiltro = document.querySelector(".box_filter")
 
@@ -896,26 +849,40 @@ async function idsDoTipo(tipo) {
    return cacheTipos[tipo]
 }
 
-async function aplicarFiltros() {
-   const mensagem = document.getElementById("sem_resultado")
+const normalizar = (texto) =>
+   texto
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase()
+      .trim()
 
-   if (filtrosAtivos.size === 0) {
-      exibirLista(pokedex)
-      mensagem.hidden = true
-      return
-   }
+let ultimaBusca = 0
+
+async function atualizarLista() {
+   const minhaBusca = ++ultimaBusca
+   const mensagem = document.getElementById("sem_resultado")
+   const termo = normalizar(document.getElementById("search_input")?.value ?? "")
 
    try {
       const conjuntos = await Promise.all([...filtrosAtivos].map(idsDoTipo))
 
-      const filtrados = pokedex.filter((pokemon) =>
-         conjuntos.every((conjunto) => conjunto.has(pokemon.id)),
-      )
+      if (minhaBusca !== ultimaBusca) return
 
-      exibirLista(filtrados)
-      mensagem.hidden = filtrados.length > 0
+      const resultado = pokedex.filter((pokemon) => {
+         const temTodosOsTipos = conjuntos.every((conjunto) =>
+            conjunto.has(pokemon.id),
+         )
+         const combinaComTexto =
+            normalizar(pokemon.name).includes(termo) ||
+            String(pokemon.id).includes(termo)
+
+         return temTodosOsTipos && combinaComTexto
+      })
+
+      exibirLista(resultado)
+      mensagem.hidden = resultado.length > 0
    } catch (erro) {
-      console.error("Falha ao aplicar os filtros:", erro)
+      console.error("Falha ao atualizar a lista:", erro)
    }
 }
 
@@ -933,5 +900,5 @@ caixaFiltro.addEventListener("click", (evento) => {
       .querySelector("ion-icon")
       .setAttribute("name", ativo ? "ellipse" : "ellipse-outline")
 
-   aplicarFiltros()
+   atualizarLista()
 })
