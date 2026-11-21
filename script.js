@@ -646,6 +646,7 @@ function registrarComparacao() {
 const box_filter = document.querySelector(".box_filter")
    box_filter.innerHTML = `
       <button class="fechar_filter">Fechar</button>
+      <button class="limpar_filter">Limpar filtros</button>
       <div class="opcoes">
          <p class="name_filter">Normal</p>
 
@@ -837,6 +838,17 @@ caixaFiltro.querySelectorAll(".toogle_filter").forEach((botao, i) => {
 })
 
 const filtrosAtivos = new Set()
+
+caixaFiltro.querySelector(".limpar_filter").addEventListener("click", () => {
+   filtrosAtivos.clear()
+
+   caixaFiltro.querySelectorAll(".toogle_filter ion-icon").forEach((icone) => {
+      icone.setAttribute("name", "ellipse-outline")
+   })
+
+   atualizarLista()
+})
+
 const cacheTipos = {}
 
 async function idsDoTipo(tipo) {

@@ -436,7 +436,7 @@ main {
    gap: 10px;
 }
 
-.fechar_filter {
+.fechar_filter, .limpar_filter{
    border: solid var(--purple) 2px;
    background-color: var(--glass);
    backdrop-filter: blur(5px);
@@ -451,6 +451,12 @@ main {
    color: red;
    background-color: black;
    border: solid red 2px;
+}
+
+.limpar_filter:hover {
+   color: green;
+   background-color: black;
+   border: solid green 2px;
 }
 
 .box_filter::backdrop {
